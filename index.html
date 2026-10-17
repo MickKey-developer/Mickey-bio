@@ -1,0 +1,1691 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+  </script>
+  <title>MICKEY — Co-CEO & FOUNDER Lumeta Code Studio</title>
+  <meta name="description" content="Mickey — Co-CEO & FOUNDER Lumeta Code Studio, кодер и вайбкодер. «Меня просят — если хотят успеха.» Официальные сообщества Discord и Telegram." />
+  <meta name="theme-color" content="#040406" />
+  <meta property="og:title" content="MICKEY — Co-CEO & FOUNDER Lumeta Code Studio" />
+  <meta property="og:description" content="Кодер, вайбкодер и со-основатель Lumeta Code Studio (совместно с Twin). «Меня просят — если хотят успеха.»" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050507' stroke='%23d4af37' stroke-width='3'/%3E%3Cpath d='M14 48V16h9l9 18 9-18h9v32h-8V29l-8 15h-4l-8-15v19h-8z' fill='%23f5c542'/%3E%3C/svg%3E" />
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            obsidian: {
+              950: '#040406',
+              900: '#08080b',
+              800: '#0e0e14',
+              700: '#16161f'
+            },
+            gold: {
+              300: '#f9df7b',
+              400: '#f5c542',
+              500: '#d4af37',
+              600: '#a17c1b'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --gold: #d4af37;
+      --gold-bright: #f5c542;
+      --bg-dark: #040406;
+    }
+    body {
+      background-color: #040406;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ================= DETAILED HOROLOGICAL & MECHANICAL M INTRO OVERLAY ================= */
+    #introOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background: radial-gradient(circle at 50% 44%, #14121d 0%, #050508 65%, #020203 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #introOverlay.intro-hidden {
+      opacity: 0;
+      transform: scale(1.04);
+      pointer-events: none;
+    }
+
+    /* Rotating Horological Gears */
+    @keyframes spinCW {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    @keyframes spinCCW {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(-360deg); }
+    }
+    .gear-cw {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: spinCW 10s linear infinite;
+    }
+    .gear-ccw {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: spinCCW 7.5s linear infinite;
+    }
+    .gear-fast {
+      transform-origin: center;
+      transform-box: fill-box;
+      animation: spinCW 3.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    /* 7-Stage Detailed Mechanical M Assembly Transitions */
+    .m-part-left-pillar {
+      opacity: 0;
+      transform: translate(-68px, 52px) rotate(-16deg) scale(0.8);
+      transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.08s;
+    }
+    .m-part-right-pillar {
+      opacity: 0;
+      transform: translate(68px, 52px) rotate(16deg) scale(0.8);
+      transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.22s;
+    }
+    .m-part-left-cap {
+      opacity: 0;
+      transform: translate(-35px, -45px) scale(0.7);
+      transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.36s;
+    }
+    .m-part-right-cap {
+      opacity: 0;
+      transform: translate(35px, -45px) scale(0.7);
+      transition: all 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.44s;
+    }
+    .m-part-left-diag {
+      opacity: 0;
+      transform: translate(-48px, -64px) rotate(28deg) scale(0.75);
+      transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.56s;
+    }
+    .m-part-right-diag {
+      opacity: 0;
+      transform: translate(48px, -64px) rotate(-28deg) scale(0.75);
+      transition: all 0.85s cubic-bezier(0.22, 1, 0.36, 1) 0.7s;
+    }
+    .m-part-core-lock {
+      opacity: 0;
+      transform: scale(0) rotate(120deg);
+      transform-origin: 140px 154px;
+      transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.96s;
+    }
+
+    #introOverlay.assemble-active .m-part-left-pillar,
+    #introOverlay.assemble-active .m-part-right-pillar,
+    #introOverlay.assemble-active .m-part-left-cap,
+    #introOverlay.assemble-active .m-part-right-cap,
+    #introOverlay.assemble-active .m-part-left-diag,
+    #introOverlay.assemble-active .m-part-right-diag {
+      opacity: 1;
+      transform: translate(0, 0) rotate(0deg) scale(1);
+    }
+    #introOverlay.assemble-active .m-part-core-lock {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+
+    /* Intro MICKEY Text Reveal */
+    .intro-title {
+      opacity: 0;
+      letter-spacing: 0.68em;
+      transform: translateY(14px);
+      transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 1.08s;
+    }
+    .intro-subtitle {
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 1.3s;
+    }
+    #introOverlay.assemble-active .intro-title {
+      opacity: 1;
+      letter-spacing: 0.34em;
+      transform: translateY(0);
+    }
+    #introOverlay.assemble-active .intro-subtitle {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ================= APPLE HOME STYLE INFINITE KINETIC CAROUSEL ================= */
+    @keyframes appleMarqueeLeft {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    @keyframes appleMarqueeRight {
+      0% { transform: translate3d(-50%, 0, 0); }
+      100% { transform: translate3d(0, 0, 0); }
+    }
+    .apple-track-left {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: appleMarqueeLeft 44s linear infinite;
+    }
+    .apple-track-right {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: appleMarqueeRight 48s linear infinite;
+    }
+    .apple-carousel-wrapper:hover .apple-track-left,
+    .apple-carousel-wrapper:hover .apple-track-right,
+    .apple-carousel-paused .apple-track-left,
+    .apple-carousel-paused .apple-track-right {
+      animation-play-state: paused;
+    }
+    .apple-card {
+      width: 310px;
+      flex-shrink: 0;
+      background: linear-gradient(165deg, rgba(20, 20, 28, 0.88) 0%, rgba(9, 9, 14, 0.95) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .apple-card:hover {
+      transform: translateY(-5px) scale(1.015);
+      border-color: rgba(245, 197, 66, 0.55);
+      box-shadow: 0 20px 42px -12px rgba(0, 0, 0, 0.9),
+                  0 0 26px -6px rgba(245, 197, 66, 0.25);
+    }
+
+    /* Strict Executive Card with Mouse Spotlight */
+    .strict-card {
+      position: relative;
+      background: linear-gradient(180deg, rgba(14, 14, 20, 0.82) 0%, rgba(7, 7, 11, 0.92) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  border-color 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+                  box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+    .strict-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        520px circle at var(--mouse-x, 50%) var(--mouse-y, 0%),
+        rgba(212, 175, 55, 0.1),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .strict-card:hover::before {
+      opacity: 1;
+    }
+    .strict-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(212, 175, 55, 0.45);
+      box-shadow: 0 22px 48px -15px rgba(0, 0, 0, 0.88),
+                  0 0 28px -8px rgba(212, 175, 55, 0.2);
+    }
+
+    /* Top Gold Line Reveal on Card Hover */
+    .top-line-accent::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #f5c542, #ffffff, #f5c542, transparent);
+      transform: scaleX(0);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .top-line-accent:hover::after {
+      transform: scaleX(1);
+    }
+
+    /* Strict Navigation Underline Animation */
+    .nav-link {
+      position: relative;
+      color: #a1a1aa;
+      transition: color 0.3s ease;
+    }
+    .nav-link:hover,
+    .nav-link.active {
+      color: #ffffff;
+    }
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1.5px;
+      background: linear-gradient(90deg, #f5c542, #ffffff);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .delay-100 { transition-delay: 90ms; }
+    .delay-200 { transition-delay: 180ms; }
+    .delay-300 { transition-delay: 270ms; }
+
+    @keyframes borderSweep {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .gold-border-animated {
+      background: linear-gradient(120deg, #d4af37, #ffffff, #7a5c08, #f5c542, #ffffff);
+      background-size: 300% 300%;
+      animation: borderSweep 7s ease infinite;
+    }
+
+    /* Button Shimmer Sweep */
+    .btn-strict-gold {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f5c542 0%, #d4af37 100%);
+      color: #050507;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .btn-strict-gold:hover {
+      box-shadow: 0 0 28px rgba(245, 197, 66, 0.38);
+      transform: translateY(-1px);
+    }
+
+    /* Progress Bar Animation */
+    .skill-bar-fill {
+      width: 0%;
+      transition: width 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #040406;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #27272a;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #d4af37;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-[#040406] text-white selection:bg-gold-500 selection:text-black relative">
+
+  <!-- ================= DETAILED HOROLOGICAL & MECHANICAL M INTRO OVERLAY ================= -->
+  <div id="introOverlay" role="dialog" aria-label="Механическая заставка Mickey">
+    <div class="relative flex flex-col items-center justify-center px-4">
+      
+      <!-- Ambient Golden Halo behind Mechanism -->
+      <div class="absolute w-80 h-80 rounded-full bg-gold-500/15 blur-[95px] pointer-events-none"></div>
+
+      <!-- High-Precision Horological SVG Mechanism & M Assembly -->
+      <div class="relative w-64 h-64 sm:w-80 sm:h-80 flex items-center justify-center">
+        <svg viewBox="0 0 280 280" class="w-full h-full overflow-visible">
+          <defs>
+            <linearGradient id="mechGold" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fff6cc" />
+              <stop offset="35%" stop-color="#f5c542" />
+              <stop offset="75%" stop-color="#b88914" />
+              <stop offset="100%" stop-color="#523a04" />
+            </linearGradient>
+            <linearGradient id="mechGoldDark" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#785808" />
+              <stop offset="50%" stop-color="#d4af37" />
+              <stop offset="100%" stop-color="#fff1b0" />
+            </linearGradient>
+            <linearGradient id="mechSteel" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff" />
+              <stop offset="55%" stop-color="#b4b4be" />
+              <stop offset="100%" stop-color="#272730" />
+            </linearGradient>
+            <filter id="goldGlowFilter" x="-25%" y="-25%" width="150%" height="150%">
+              <feGaussianBlur stdDeviation="3.5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+          </defs>
+
+          <!-- Outer Horological Bezel & Telemetry Ring -->
+          <circle cx="140" cy="140" r="128" fill="none" stroke="rgba(212,175,55,0.2)" stroke-width="1" stroke-dasharray="3 7" class="gear-cw" />
+          <circle cx="140" cy="140" r="118" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1.2" />
+          <circle cx="140" cy="140" r="110" fill="none" stroke="rgba(245,197,66,0.14)" stroke-width="2" stroke-dasharray="18 10 4 10" class="gear-ccw" />
+
+          <!-- Precision Bezel Crosshairs -->
+          <line x1="140" y1="14" x2="140" y2="26" stroke="rgba(245,197,66,0.45)" stroke-width="1.5" />
+          <line x1="140" y1="254" x2="140" y2="266" stroke="rgba(245,197,66,0.45)" stroke-width="1.5" />
+          <line x1="14" y1="140" x2="26" y2="140" stroke="rgba(245,197,66,0.45)" stroke-width="1.5" />
+          <line x1="254" y1="140" x2="266" y2="140" stroke="rgba(245,197,66,0.45)" stroke-width="1.5" />
+
+          <!-- Gear 1: Central Main Horological Drive Wheel -->
+          <g class="gear-ccw" opacity="0.42">
+            <circle cx="140" cy="146" r="58" fill="none" stroke="#f5c542" stroke-width="6" stroke-dasharray="7 5.5" />
+            <circle cx="140" cy="146" r="52" fill="none" stroke="#d4af37" stroke-width="2" />
+            <circle cx="140" cy="146" r="38" fill="none" stroke="#ffffff" stroke-width="1.2" stroke-dasharray="10 6" />
+            <line x1="140" y1="94" x2="140" y2="198" stroke="#d4af37" stroke-width="1.5" />
+            <line x1="88" y1="146" x2="192" y2="146" stroke="#d4af37" stroke-width="1.5" />
+            <line x1="103" y1="109" x2="177" y2="183" stroke="#d4af37" stroke-width="1.2" />
+            <line x1="177" y1="109" x2="103" y2="183" stroke="#d4af37" stroke-width="1.2" />
+          </g>
+
+          <!-- Gear 2: Upper-Left Planetary Cogwheel -->
+          <g class="gear-cw" opacity="0.55">
+            <circle cx="76" cy="82" r="31" fill="none" stroke="#d4af37" stroke-width="4.5" stroke-dasharray="6 4.8" />
+            <circle cx="76" cy="82" r="25" fill="none" stroke="#ffffff" stroke-width="1.2" />
+            <circle cx="76" cy="82" r="14" fill="none" stroke="#f5c542" stroke-width="1.5" stroke-dasharray="5 4" />
+            <line x1="76" y1="57" x2="76" y2="107" stroke="#d4af37" stroke-width="1.2" />
+            <line x1="51" y1="82" x2="101" y2="82" stroke="#d4af37" stroke-width="1.2" />
+            <circle cx="76" cy="82" r="5" fill="#f5c542" />
+          </g>
+
+          <!-- Gear 3: Upper-Right Planetary Cogwheel -->
+          <g class="gear-ccw" opacity="0.55">
+            <circle cx="204" cy="82" r="31" fill="none" stroke="#ffffff" stroke-width="4.5" stroke-dasharray="6 4.8" />
+            <circle cx="204" cy="82" r="25" fill="none" stroke="#d4af37" stroke-width="1.2" />
+            <circle cx="204" cy="82" r="14" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="5 4" />
+            <line x1="204" y1="57" x2="204" y2="107" stroke="#ffffff" stroke-width="1.2" />
+            <line x1="179" y1="82" x2="229" y2="82" stroke="#ffffff" stroke-width="1.2" />
+            <circle cx="204" cy="82" r="5" fill="#ffffff" />
+          </g>
+
+          <!-- Gear 4: Lower-Left Escapement Cog -->
+          <g class="gear-ccw" opacity="0.48">
+            <circle cx="76" cy="196" r="22" fill="none" stroke="#f5c542" stroke-width="3.5" stroke-dasharray="5 4" />
+            <circle cx="76" cy="196" r="15" fill="none" stroke="#ffffff" stroke-width="1" />
+            <circle cx="76" cy="196" r="4" fill="#d4af37" />
+          </g>
+
+          <!-- Gear 5: Lower-Right Escapement Cog -->
+          <g class="gear-cw" opacity="0.48">
+            <circle cx="204" cy="196" r="22" fill="none" stroke="#f5c542" stroke-width="3.5" stroke-dasharray="5 4" />
+            <circle cx="204" cy="196" r="15" fill="none" stroke="#ffffff" stroke-width="1" />
+            <circle cx="204" cy="196" r="4" fill="#d4af37" />
+          </g>
+
+          <!-- PART 1: Left Main Beveled Pillar -->
+          <g class="m-part-left-pillar" filter="url(#goldGlowFilter)">
+            <polygon points="52,216 52,64 84,64 84,216" fill="url(#mechGold)" stroke="#ffffff" stroke-width="1.3" />
+            <polygon points="58,210 58,70 78,70 78,210" fill="#08080c" stroke="#d4af37" stroke-width="0.9" />
+            <line x1="68" y1="78" x2="68" y2="202" stroke="#f5c542" stroke-width="2.5" stroke-dasharray="12 6" />
+            <circle cx="68" cy="76" r="3.2" fill="#ffffff" />
+            <circle cx="68" cy="140" r="3.2" fill="#f5c542" />
+            <circle cx="68" cy="204" r="3.2" fill="#ffffff" />
+          </g>
+
+          <!-- PART 2: Right Main Beveled Pillar -->
+          <g class="m-part-right-pillar" filter="url(#goldGlowFilter)">
+            <polygon points="196,216 196,64 228,64 228,216" fill="url(#mechGold)" stroke="#ffffff" stroke-width="1.3" />
+            <polygon points="202,210 202,70 222,70 222,210" fill="#08080c" stroke="#d4af37" stroke-width="0.9" />
+            <line x1="212" y1="78" x2="212" y2="202" stroke="#f5c542" stroke-width="2.5" stroke-dasharray="12 6" />
+            <circle cx="212" cy="76" r="3.2" fill="#ffffff" />
+            <circle cx="212" cy="140" r="3.2" fill="#f5c542" />
+            <circle cx="212" cy="204" r="3.2" fill="#ffffff" />
+          </g>
+
+          <!-- PART 3: Left Crown & Base Locking Caps -->
+          <g class="m-part-left-cap">
+            <rect x="47" y="56" width="42" height="10" rx="2" fill="url(#mechSteel)" stroke="#ffffff" stroke-width="1" />
+            <rect x="47" y="214" width="42" height="10" rx="2" fill="url(#mechSteel)" stroke="#ffffff" stroke-width="1" />
+          </g>
+
+          <!-- PART 4: Right Crown & Base Locking Caps -->
+          <g class="m-part-right-cap">
+            <rect x="191" y="56" width="42" height="10" rx="2" fill="url(#mechSteel)" stroke="#ffffff" stroke-width="1" />
+            <rect x="191" y="214" width="42" height="10" rx="2" fill="url(#mechSteel)" stroke="#ffffff" stroke-width="1" />
+          </g>
+
+          <!-- PART 5: Left Diagonal Mechanical Wing -->
+          <g class="m-part-left-diag" filter="url(#goldGlowFilter)">
+            <polygon points="80,64 108,64 146,148 130,172 80,90" fill="url(#mechSteel)" stroke="#ffffff" stroke-width="1.3" />
+            <line x1="94" y1="76" x2="132" y2="150" stroke="#050507" stroke-width="2.2" stroke-dasharray="8 5" />
+          </g>
+
+          <!-- PART 6: Right Diagonal Mechanical Wing -->
+          <g class="m-part-right-diag" filter="url(#goldGlowFilter)">
+            <polygon points="200,64 172,64 134,148 150,172 200,90" fill="url(#mechGoldDark)" stroke="#ffffff" stroke-width="1.3" />
+            <line x1="186" y1="76" x2="148" y2="150" stroke="#050507" stroke-width="2.2" stroke-dasharray="8 5" />
+          </g>
+
+          <!-- PART 7: Central Tourbillon Keystone Lock -->
+          <g class="m-part-core-lock">
+            <circle cx="140" cy="154" r="19" fill="#050507" stroke="#f5c542" stroke-width="2.5" />
+            <circle cx="140" cy="154" r="13" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-dasharray="4 3" class="gear-fast" />
+            <polygon points="140,145 148,154 140,163 132,154" fill="#f5c542" stroke="#ffffff" stroke-width="0.8" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- Assembled Brand Name Below M -->
+      <div class="text-center mt-2">
+        <div class="intro-title text-3xl sm:text-5xl font-black text-white uppercase pl-[0.34em]">
+          MICKEY
+        </div>
+        <div class="intro-subtitle mt-3 flex flex-col items-center gap-3">
+          <span class="text-[11px] font-mono uppercase tracking-[0.26em] text-gold-400">
+            Co-CEO &amp; FOUNDER // Lumeta Code Studio
+          </span>
+          <div class="w-48 h-[2px] bg-white/10 rounded-full overflow-hidden">
+            <div id="introProgress" class="h-full bg-gradient-to-r from-gold-500 via-white to-gold-400 w-0 transition-all duration-[2400ms] ease-out"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skip / Enter Immediately Button -->
+      <button type="button" id="skipIntroBtn" class="mt-7 px-4 py-1.5 rounded-full text-[11px] font-mono uppercase tracking-widest text-zinc-400 hover:text-white border border-white/10 hover:border-gold-400/50 transition">
+        Пропустить ❯
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= DYNAMIC AURORA WAVE & DEPTH STARFIELD BACKGROUND ================= -->
+  <canvas id="bgCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Toast Notification -->
+  <div id="toastContainer" class="fixed bottom-6 right-6 z-50 flex flex-col gap-2.5 pointer-events-none"></div>
+
+  <!-- ================= STREAMLINED STICKY TOP BAR ================= -->
+  <header class="sticky top-0 z-40 bg-[#040406]/85 backdrop-blur-2xl border-b border-white/[0.07]">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 h-14 flex items-center justify-between">
+      
+      <!-- Brand Identity -->
+      <button type="button" data-scroll="hero" class="nav-scroll-btn flex items-center gap-3 group text-left">
+        <div class="w-7 h-7 rounded bg-[#0b0b10] border border-gold-500/60 flex items-center justify-center group-hover:border-white transition duration-300">
+          <span class="font-extrabold text-xs text-gold-400 group-hover:text-white transition duration-300">M</span>
+        </div>
+        <span class="font-bold tracking-[0.2em] text-xs sm:text-sm text-white uppercase">MICKEY</span>
+      </button>
+
+      <!-- Compact 3-Item Navigation -->
+      <nav class="flex items-center gap-5 sm:gap-8">
+        <button type="button" data-scroll="hub" class="nav-scroll-btn nav-link text-[11px] sm:text-xs font-medium uppercase tracking-[0.12em]">Площадки</button>
+        <button type="button" data-scroll="studio" class="nav-scroll-btn nav-link text-[11px] sm:text-xs font-medium uppercase tracking-[0.12em]">Lumeta Studio</button>
+        <button type="button" data-scroll="contact" class="nav-scroll-btn nav-link text-[11px] sm:text-xs font-medium uppercase tracking-[0.12em]">Контакты</button>
+      </nav>
+
+      <!-- Single Primary Action -->
+      <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="btn-strict-gold px-3.5 py-1.5 rounded-md text-xs font-semibold tracking-wide flex items-center gap-1.5">
+        <span>Discord</span>
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="relative z-10 max-w-5xl mx-auto px-4 sm:px-8 pt-12 pb-28 space-y-24">
+
+    <!-- 1. HERO / EXECUTIVE BIO -->
+    <section id="hero" class="reveal visible pt-2">
+      <div class="strict-card top-line-accent rounded-2xl p-8 sm:p-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+          
+          <!-- Unified Iconic Gold M Emblem -->
+          <div class="lg:col-span-4 flex flex-col items-center">
+            <div class="relative">
+              <div class="absolute -inset-4 rounded-2xl bg-gold-500/15 blur-2xl pointer-events-none"></div>
+              <div class="relative w-44 h-44 sm:w-52 sm:h-52 rounded-2xl p-[1.5px] gold-border-animated shadow-2xl">
+                <div class="w-full h-full rounded-[15px] bg-[#050507] overflow-hidden">
+                  <img src="data:image/jpeg;base64,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" alt="Mickey M Monogram" class="w-full h-full object-cover" />
+                </div>
+              </div>
+            </div>
+            <button type="button" id="replayIntroBtn" class="mt-4 px-3 py-1 rounded-md bg-white/[0.04] hover:bg-white/[0.09] border border-white/10 text-[11px] font-mono text-zinc-400 hover:text-gold-300 transition">
+              Повторить сборку M
+            </button>
+          </div>
+
+          <!-- Executive Bio Content -->
+          <div class="lg:col-span-8 space-y-6 text-center lg:text-left">
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5">
+              <span class="px-3 py-1 rounded text-[11px] font-mono uppercase tracking-[0.14em] bg-gold-500/15 text-gold-300 border border-gold-500/35">
+                Co-CEO &amp; FOUNDER — Lumeta Code Studio
+              </span>
+              <span class="px-3 py-1 rounded text-[11px] font-mono uppercase tracking-[0.14em] bg-white/[0.06] text-white border border-white/15">
+                Coder &amp; Vibe Coder
+              </span>
+            </div>
+
+            <div class="space-y-3">
+              <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white">
+                MICKEY
+              </h1>
+              <p class="text-base sm:text-lg text-zinc-300 max-w-2xl leading-relaxed font-normal">
+                Со-основатель и руководитель <span class="text-white font-semibold">Lumeta Code Studio</span> (совместно со вторым Co-CEO &amp; FOUNDER <span class="text-gold-300 font-semibold">Twin</span>). Архитектура современных веб-платформ, высокоскоростной вайбкодинг и разработка цифровых продуктов под ключ.
+              </p>
+            </div>
+
+            <!-- Signature Quote -->
+            <blockquote class="relative pl-5 py-3 border-l-2 border-gold-400 bg-gradient-to-r from-white/[0.03] to-transparent text-left">
+              <p class="text-lg sm:text-2xl font-semibold tracking-tight text-white">
+                «Меня просят — если хотят успеха.»
+              </p>
+            </blockquote>
+
+            <!-- Primary Links Bar -->
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1">
+              <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="btn-strict-gold px-5 py-3 rounded-lg font-semibold text-xs sm:text-sm tracking-wide flex items-center gap-2">
+                <span>Discord: Mickey Community</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              </a>
+
+              <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-lg font-semibold text-xs sm:text-sm bg-white text-black hover:bg-zinc-200 transition duration-300 flex items-center gap-2">
+                <span>ТГК: Lumeta Code Studio</span>
+              </a>
+
+              <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="px-5 py-3 rounded-lg font-semibold text-xs sm:text-sm bg-white/[0.05] text-white border border-white/15 hover:border-gold-400/60 hover:text-gold-300 transition duration-300 flex items-center gap-2">
+                <span>ТГК: Лайф.exe</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. APPLE HOME STYLE INFINITE KINETIC CARDS SHOWCASE -->
+    <section id="appleShowcase" class="reveal space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-5">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-gold-400">Интерактивная витрина</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            Факты, статус, качество и быстрые ссылки
+          </h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-mono text-zinc-400 hidden sm:inline">Наведите курсор для остановки</span>
+          <button type="button" id="toggleCarouselBtn" class="px-3 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-mono text-gold-300 transition">
+            Пауза ленты
+          </button>
+        </div>
+      </div>
+
+      <!-- Full-bleed Kinetic Container with Edge Fade Masks -->
+      <div id="appleCarouselContainer" class="apple-carousel-wrapper relative overflow-hidden py-2 space-y-4 [mask-image:linear-gradient(to_right,transparent,black_7%,black_93%,transparent)]">
+        
+        <!-- Row 1: Moving Left (CEO, Coder, Quality, Links) -->
+        <div class="apple-track-left gap-4">
+          
+          <!-- Set 1 -->
+          <div class="flex items-stretch gap-4 pr-4">
+            
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТАТУС // CEO</span>
+                <span class="text-xs font-mono text-zinc-400 group-hover:text-gold-400 transition">lumeta.site ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Co-CEO &amp; FOUNDER</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Основатель и руководитель Lumeta Code Studio (совместно с Co-CEO Twin). Управление полным циклом разработки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Lumeta Code Studio</div>
+            </a>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ИНЖЕНЕРИЯ // КОДЕР</span>
+                <span class="text-xs font-mono text-gold-400">99% AI+CODE</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Кодер &amp; Вайбкодер</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Синергия фундаментальной архитектуры кода и современных AI-пайплайнов для кратного ускорения релизов.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">React • Next.js • Python • Node.js</div>
+            </div>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТАНДАРТ // КАЧЕСТВО</span>
+                <span class="text-xs font-mono text-white">100% PRO</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Эталонное качество</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">«Меня просят — если хотят успеха.» Строгий визуальный стиль, чистая логика и отказоустойчивость каждого проекта.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Премиальный продакшен</div>
+            </div>
+
+            <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-400 text-black font-bold">DISCORD SERVER</span>
+                <span class="text-xs font-mono text-gold-400">Вступить ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Mickey Community</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Главный Discord-хаб: голосовые комнаты, разборы проектов, вайбкодинг и прямое общение с Mickey.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">discord.gg/Tgu4dCdzp</div>
+            </a>
+
+            <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white text-black font-bold">TELEGRAM 01</span>
+                <span class="text-xs font-mono text-white">Открыть ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">ТГК: Lumeta Code Studio</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Официальный канал студии Mickey и Twin: портфолио, новые запуски, архитектура и заказ разработки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Официальный канал студии</div>
+            </a>
+
+            <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">TELEGRAM 02</span>
+                <span class="text-xs font-mono text-gold-400">Читать ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">ТГК: Лайф.exe</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Личный блог Mickey: мысли без фильтров, бэкстейдж работы со-основателя и личные апдейты.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Авторский лайф-канал</div>
+            </a>
+
+          </div>
+
+          <!-- Set 2 (Duplicate for seamless infinite loop) -->
+          <div class="flex items-stretch gap-4 pr-4" aria-hidden="true">
+            
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТАТУС // CEO</span>
+                <span class="text-xs font-mono text-zinc-400 group-hover:text-gold-400 transition">lumeta.site ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Co-CEO &amp; FOUNDER</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Основатель и руководитель Lumeta Code Studio (совместно с Co-CEO Twin). Управление полным циклом разработки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Lumeta Code Studio</div>
+            </a>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ИНЖЕНЕРИЯ // КОДЕР</span>
+                <span class="text-xs font-mono text-gold-400">99% AI+CODE</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Кодер &amp; Вайбкодер</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Синергия фундаментальной архитектуры кода и современных AI-пайплайнов для кратного ускорения релизов.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">React • Next.js • Python • Node.js</div>
+            </div>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТАНДАРТ // КАЧЕСТВО</span>
+                <span class="text-xs font-mono text-white">100% PRO</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Эталонное качество</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">«Меня просят — если хотят успеха.» Строгий визуальный стиль, чистая логика и отказоустойчивость каждого проекта.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Премиальный продакшен</div>
+            </div>
+
+            <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-400 text-black font-bold">DISCORD SERVER</span>
+                <span class="text-xs font-mono text-gold-400">Вступить ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">Mickey Community</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Главный Discord-хаб: голосовые комнаты, разборы проектов, вайбкодинг и прямое общение с Mickey.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">discord.gg/Tgu4dCdzp</div>
+            </a>
+
+            <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white text-black font-bold">TELEGRAM 01</span>
+                <span class="text-xs font-mono text-white">Открыть ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">ТГК: Lumeta Code Studio</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Официальный канал студии Mickey и Twin: портфолио, новые запуски, архитектура и заказ разработки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Официальный канал студии</div>
+            </a>
+
+            <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">TELEGRAM 02</span>
+                <span class="text-xs font-mono text-gold-400">Читать ↗</span>
+              </div>
+              <div class="my-4">
+                <h3 class="text-lg font-bold text-white">ТГК: Лайф.exe</h3>
+                <p class="text-xs text-zinc-400 mt-1.5 leading-relaxed">Личный блог Mickey: мысли без фильтров, бэкстейдж работы со-основателя и личные апдейты.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Авторский лайф-канал</div>
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- Row 2: Moving Right (Partners, Direct Contacts, Speed, Architecture) -->
+        <div class="apple-track-right gap-4">
+          
+          <!-- Set 1 -->
+          <div class="flex items-stretch gap-4 pr-4">
+            
+            <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">ЛИЧНЫЙ КОНТАКТ</span>
+                <span class="text-xs font-mono text-gold-400">Написать ↗</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono">@mickey_tme</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Прямая связь в Telegram для обсуждения заказов, архитектуры и партнёрства.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Telegram Direct</div>
+            </a>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ПАРТНЁРСТВО // CO-CEO</span>
+                <span class="text-xs font-mono text-white">LEADERSHIP</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white">Со-основатель Twin</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Второй Co-CEO &amp; FOUNDER Lumeta Code Studio. Стратегическое развитие и масштабные проекты.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Mickey &amp; Twin Duo</div>
+            </div>
+
+            <button type="button" data-copy="me_mickkey" data-label="Discord тег me_mickkey скопирован" class="copy-btn apple-card rounded-2xl p-5 flex flex-col justify-between text-left">
+              <div class="flex items-center justify-between w-full">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">DISCORD TAG</span>
+                <span class="text-xs font-mono text-gold-400">Скопировать ⧉</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono">me_mickkey</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Нажмите на карточку, чтобы мгновенно скопировать личный Discord-тег Mickey.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Личный профиль Discord</div>
+            </button>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ТЕМП // СКОРОСТЬ</span>
+                <span class="text-xs font-mono text-gold-400">x3.5 FASTER</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white">Запуск под ключ</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">От идеи и прототипа до готового веб-сервиса или Telegram Mini App в кратчайшие сроки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">High-Speed Delivery</div>
+            </div>
+
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТУДИЯ // WEB</span>
+                <span class="text-xs font-mono text-gold-400 group-hover:text-white transition">Открыть ↗</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono truncate">lumeta.site</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Официальная платформа Lumeta Code Studio: веб-разработка, боты и кастомная архитектура.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Official Studio Portal</div>
+            </a>
+
+          </div>
+
+          <!-- Set 2 (Duplicate for seamless infinite loop) -->
+          <div class="flex items-stretch gap-4 pr-4" aria-hidden="true">
+            
+            <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">ЛИЧНЫЙ КОНТАКТ</span>
+                <span class="text-xs font-mono text-gold-400">Написать ↗</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono">@mickey_tme</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Прямая связь в Telegram для обсуждения заказов, архитектуры и партнёрства.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Telegram Direct</div>
+            </a>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ПАРТНЁРСТВО // CO-CEO</span>
+                <span class="text-xs font-mono text-white">LEADERSHIP</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white">Со-основатель Twin</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Второй Co-CEO &amp; FOUNDER Lumeta Code Studio. Стратегическое развитие и масштабные проекты.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">Mickey &amp; Twin Duo</div>
+            </div>
+
+            <button type="button" data-copy="me_mickkey" data-label="Discord тег me_mickkey скопирован" class="copy-btn apple-card rounded-2xl p-5 flex flex-col justify-between text-left">
+              <div class="flex items-center justify-between w-full">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">DISCORD TAG</span>
+                <span class="text-xs font-mono text-gold-400">Скопировать ⧉</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono">me_mickkey</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Нажмите на карточку, чтобы мгновенно скопировать личный Discord-тег Mickey.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Личный профиль Discord</div>
+            </button>
+
+            <div class="apple-card rounded-2xl p-5 flex flex-col justify-between">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-white/10 text-white border border-white/20">ТЕМП // СКОРОСТЬ</span>
+                <span class="text-xs font-mono text-gold-400">x3.5 FASTER</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white">Запуск под ключ</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">От идеи и прототипа до готового веб-сервиса или Telegram Mini App в кратчайшие сроки.</p>
+              </div>
+              <div class="text-[11px] font-mono text-gold-400">High-Speed Delivery</div>
+            </div>
+
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="apple-card rounded-2xl p-5 flex flex-col justify-between group">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase tracking-wider bg-gold-500/20 text-gold-300 border border-gold-500/30">СТУДИЯ // WEB</span>
+                <span class="text-xs font-mono text-gold-400 group-hover:text-white transition">Открыть ↗</span>
+              </div>
+              <div class="my-3">
+                <h3 class="text-lg font-bold text-white font-mono truncate">lumeta.site</h3>
+                <p class="text-xs text-zinc-400 mt-1 leading-relaxed">Официальная платформа Lumeta Code Studio: веб-разработка, боты и кастомная архитектура.</p>
+              </div>
+              <div class="text-[11px] font-mono text-zinc-300">Official Studio Portal</div>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. PLATFORMS: DISCORD & 2 TELEGRAM CHANNELS -->
+    <section id="hub" class="reveal space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-5">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-gold-400">Официальные ресурсы</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            Переход в Discord и 2 Telegram-канала
+          </h2>
+        </div>
+        <p class="text-xs font-mono text-zinc-400">
+          Основные каналы и сообщество
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Discord: Mickey Community -->
+        <div class="strict-card top-line-accent rounded-xl p-7 flex flex-col justify-between reveal delay-100">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-[11px] font-mono uppercase tracking-[0.15em] text-gold-400">Discord Server</span>
+              <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-tight">
+              Mickey Community
+            </h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
+              Официальное Discord-сообщество: рабочие обсуждения, код, нетворкинг разработчиков и прямая связь с Mickey.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-white/[0.07] flex items-center gap-2.5">
+            <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="btn-strict-gold flex-1 py-2.5 px-4 rounded-lg font-semibold text-xs text-center tracking-wide flex items-center justify-center gap-2">
+              <span>Перейти в Discord</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <button type="button" data-copy="https://discord.gg/Tgu4dCdzp" data-label="Ссылка на Discord скопирована" class="copy-btn p-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-300 hover:text-white transition" title="Скопировать ссылку">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Telegram 1: Lumeta Code Studio -->
+        <div class="strict-card top-line-accent rounded-xl p-7 flex flex-col justify-between reveal delay-200">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-[11px] font-mono uppercase tracking-[0.15em] text-white">Telegram Channel 01</span>
+              <span class="w-2 h-2 rounded-full bg-white"></span>
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-tight">
+              Lumeta Code Studio
+            </h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
+              Канал студии разработки Mickey и Twin. Релизы цифровых продуктов, архитектура проектов, кейсы и технологический стек.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-white/[0.07] flex items-center gap-2.5">
+            <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-lg bg-white hover:bg-zinc-200 text-black font-semibold text-xs text-center tracking-wide transition flex items-center justify-center gap-2">
+              <span>Открыть канал студии</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <button type="button" data-copy="https://t.me/+udCJH_8p0bk0Y2Fk" data-label="Ссылка на ТГК Lumeta скопирована" class="copy-btn p-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-300 hover:text-white transition" title="Скопировать ссылку">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Telegram 2: Лайф.exe -->
+        <div class="strict-card top-line-accent rounded-xl p-7 flex flex-col justify-between reveal delay-300">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-[11px] font-mono uppercase tracking-[0.15em] text-gold-400">Telegram Channel 02</span>
+              <span class="w-2 h-2 rounded-full bg-gold-400"></span>
+            </div>
+            <h3 class="text-xl font-bold text-white tracking-tight">
+              Лайф.exe
+            </h3>
+            <p class="mt-3 text-sm text-zinc-400 leading-relaxed">
+              Авторский канал Mickey: личный взгляд на индустрию, будни со-основателя студии, рабочие процессы и заметки вне кода.
+            </p>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-white/[0.07] flex items-center gap-2.5">
+            <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-4 rounded-lg bg-white/[0.08] hover:bg-gold-400 hover:text-black text-white border border-white/15 font-semibold text-xs text-center tracking-wide transition duration-300 flex items-center justify-center gap-2">
+              <span>Открыть Лайф.exe</span>
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+            </a>
+            <button type="button" data-copy="https://t.me/+oWnbhYiUYn9iY2Y0" data-label="Ссылка на Лайф.exe скопирована" class="copy-btn p-2.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/10 text-zinc-300 hover:text-white transition" title="Скопировать ссылку">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. EXPANDED FLAGSHIP SECTION: LUMETA CODE STUDIO (lumeta.site) -->
+    <section id="studio" class="reveal space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-5">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-gold-400">Флагманская студия разработки // lumeta.site</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            Lumeta Code Studio
+          </h2>
+        </div>
+        <div class="flex items-center gap-3">
+          <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] border border-white/10 text-xs font-mono text-white transition">
+            Telegram-канал студии
+          </a>
+          <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="btn-strict-gold px-4 py-1.5 rounded-lg text-xs font-semibold inline-flex items-center gap-1.5">
+            <span>lumeta.site</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Studio Main Overview & Founders Card -->
+      <div class="strict-card top-line-accent rounded-2xl p-8 sm:p-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Studio Emblem & Key Metrics -->
+          <div class="lg:col-span-4 flex flex-col items-center text-center space-y-5">
+            <div class="w-44 h-44 sm:w-52 sm:h-52 rounded-2xl p-[1px] bg-gradient-to-b from-white/40 via-gold-500/40 to-white/10 shadow-xl">
+              <img src="data:image/jpeg;base64,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" alt="Lumeta Code Studio" class="w-full h-full object-cover rounded-[15px] bg-white" />
+            </div>
+            <div class="grid grid-cols-2 gap-2.5 w-full">
+              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+                <div class="text-lg font-extrabold text-gold-400 font-mono">x3.5</div>
+                <div class="text-[11px] text-zinc-400">Скорость релизов</div>
+              </div>
+              <div class="p-3 rounded-xl bg-white/[0.03] border border-white/10">
+                <div class="text-lg font-extrabold text-white font-mono">100%</div>
+                <div class="text-[11px] text-zinc-400">Custom Архитектура</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Studio Details & Co-Founders -->
+          <div class="lg:col-span-8 space-y-6">
+            <div class="space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded text-[11px] font-mono uppercase tracking-wider bg-gold-500/15 text-gold-300 border border-gold-500/30">
+                Full-Cycle Digital Production &amp; Engineering
+              </div>
+              <h3 class="text-xl sm:text-3xl font-bold text-white tracking-tight">
+                Инженерия современных веб-систем, ботов и AI-продуктов под ключ
+              </h3>
+              <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+                <strong class="text-white">Lumeta Code Studio</strong> (<a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="text-gold-400 hover:underline">lumeta.site</a>) — технологическая студия полного цикла. Мы проектируем и запускаем коммерческие веб-платформы, Telegram Mini Apps, автоматизированные боты и кастомные интерфейсы, объединяя чистую архитектуру кода, AI-ускоренный вайбкодинг и бескомпромиссный визуальный стиль.
+              </p>
+            </div>
+
+            <!-- Founders Duo: Mickey & Twin -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              
+              <div class="p-5 rounded-xl bg-white/[0.02] border border-gold-500/35 hover:border-gold-400 transition duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-white text-base">Mickey</h4>
+                  <span class="text-[11px] font-mono text-gold-400 font-semibold">Co-CEO &amp; FOUNDER</span>
+                </div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Ведущий кодер и вайбкодер студии. Продуктовая архитектура, фронтенд-системы, AI-пайплайны и технический контроль качества.
+                </p>
+              </div>
+
+              <div class="p-5 rounded-xl bg-white/[0.02] border border-white/15 hover:border-white/40 transition duration-300">
+                <div class="flex items-center justify-between mb-2">
+                  <h4 class="font-bold text-white text-base">Twin</h4>
+                  <span class="text-[11px] font-mono text-zinc-200 font-semibold">Co-CEO &amp; FOUNDER</span>
+                </div>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Второй со-основатель и руководитель Lumeta Code Studio. Стратегическое управление, развитие партнёрств и масштабирование цифровых продуктов.
+                </p>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Studio Services & Directions Matrix -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        
+        <div class="strict-card top-line-accent rounded-xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">Направление 01 // Web &amp; SaaS</span>
+            <span class="text-xs font-mono text-zinc-400">React / Next.js / TS</span>
+          </div>
+          <h4 class="text-lg font-bold text-white">Разработка сайтов и веб-платформ под ключ</h4>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            Создание имиджевых лендингов, корпоративных порталов, SaaS-панелей и интерактивных веб-приложений с высокой скоростью загрузки, адаптивной вёрсткой и продуманной анимацией.
+          </p>
+        </div>
+
+        <div class="strict-card top-line-accent rounded-xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-white">Направление 02 // Telegram &amp; Discord</span>
+            <span class="text-xs font-mono text-gold-400">TMA / Bots / API</span>
+          </div>
+          <h4 class="text-lg font-bold text-white">Telegram Mini Apps и сложные боты</h4>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            Проектирование экосистем внутри Telegram и Discord: встроенные WebApp-магазины, личные кабинеты, платёжные интеграции, игровые механики и автоматизация комьюнити.
+          </p>
+        </div>
+
+        <div class="strict-card top-line-accent rounded-xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">Направление 03 // AI &amp; Vibe Coding</span>
+            <span class="text-xs font-mono text-zinc-400">LLM / Automation</span>
+          </div>
+          <h4 class="text-lg font-bold text-white">AI-интеграции и скоростной запуск MVP</h4>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            Внедрение нейросетевых модулей, умных ассистентов и автоматизированных бизнес-процессов. Сборка и вывод готового продукта на рынок в разы быстрее классической разработки.
+          </p>
+        </div>
+
+        <div class="strict-card top-line-accent rounded-xl p-6 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-white">Направление 04 // UI/UX &amp; Architecture</span>
+            <span class="text-xs font-mono text-gold-400">Design &amp; Backend</span>
+          </div>
+          <h4 class="text-lg font-bold text-white">Премиальный UI/UX и надёжный Backend</h4>
+          <p class="text-xs sm:text-sm text-zinc-400 leading-relaxed">
+            Разработка фирменного визуального стиля, дизайн-систем, отказоустойчивой серверной логики (Python / Node.js), баз данных и полное сопровождение вплоть до деплоя.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Studio Workflow Pipeline -->
+      <div class="strict-card rounded-2xl p-6 sm:p-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+          <span class="text-[11px] font-mono uppercase tracking-[0.18em] text-gold-400">Процесс работы Lumeta Code Studio</span>
+          <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-zinc-400 hover:text-white transition">Оставить заявку на lumeta.site ↗</a>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-xs font-mono text-gold-400 font-bold">ШАГ 01</span>
+            <h5 class="text-sm font-bold text-white mt-1">Анализ и Архитектура</h5>
+            <p class="text-xs text-zinc-400 mt-1">Детальный разбор задачи, подбор стека и формирование технического плана.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-xs font-mono text-white font-bold">ШАГ 02</span>
+            <h5 class="text-sm font-bold text-white mt-1">UI/UX и Прототип</h5>
+            <p class="text-xs text-zinc-400 mt-1">Отрисовка современного интерфейса, интерактивных состояний и логики экранов.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-xs font-mono text-gold-400 font-bold">ШАГ 03</span>
+            <h5 class="text-sm font-bold text-white mt-1">Код и Вайбкодинг</h5>
+            <p class="text-xs text-zinc-400 mt-1">Скоростная сборка фронтенда, бэкенда и интеграций с ревью каждой детали.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10">
+            <span class="text-xs font-mono text-white font-bold">ШАГ 04</span>
+            <h5 class="text-sm font-bold text-white mt-1">Деплой и Поддержка</h5>
+            <p class="text-xs text-zinc-400 mt-1">Финальная оптимизация, запуск проекта на боевом сервере и развитие.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. UNIFIED COMPETENCIES & STACK -->
+    <section id="stack" class="reveal space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-5">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-gold-400">Технологический профиль</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            Ключевые компетенции Mickey
+          </h2>
+        </div>
+        <p class="text-xs font-mono text-zinc-400">
+          Full-Stack Engineering &amp; AI Vibe Coding
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">01 / Architecture</span>
+            <span class="text-xs font-mono text-white">99%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">AI-Driven Vibe Coding</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Ускоренная сборка и проектирование готовых систем с применением современных LLM-агентов и строгого ревью кода.
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-gold-400 to-white h-full" data-width="99%"></div>
+          </div>
+        </div>
+
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-zinc-300">02 / Web Systems</span>
+            <span class="text-xs font-mono text-gold-400">96%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">React / Next.js / TypeScript</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Разработка строгих корпоративных сайтов, веб-приложений и высококонверсионных интерфейсов с плавной анимацией.
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-white to-gold-400 h-full" data-width="96%"></div>
+          </div>
+        </div>
+
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">03 / Automation</span>
+            <span class="text-xs font-mono text-white">98%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Telegram Mini Apps &amp; Боты</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Создание комплексных WebApp-приложений и автоматизированных ботов для Telegram и Discord-инфраструктуры.
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-gold-400 to-white h-full" data-width="98%"></div>
+          </div>
+        </div>
+
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-zinc-300">04 / Backend</span>
+            <span class="text-xs font-mono text-gold-400">95%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Python / Node.js / API</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Проектирование масштабируемой серверной логики, баз данных и безопасных интеграций со сторонними сервисами.
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-white to-gold-400 h-full" data-width="95%"></div>
+          </div>
+        </div>
+
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-gold-400">05 / Production</span>
+            <span class="text-xs font-mono text-white">100%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Запуск продуктов под ключ</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Полный цикл реализации от концепции и дизайна до деплоя: «Меня просят — если хотят успеха».
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-gold-400 to-white h-full" data-width="100%"></div>
+          </div>
+        </div>
+
+        <div class="strict-card rounded-xl p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider text-zinc-300">06 / Ecosystem</span>
+            <span class="text-xs font-mono text-gold-400">97%</span>
+          </div>
+          <h3 class="text-base font-bold text-white">Комьюнити и Медиа</h3>
+          <p class="text-xs text-zinc-400 leading-relaxed">
+            Развитие профильного сообщества Mickey Community и открытая трансляция опыта в проектах студии.
+          </p>
+          <div class="w-full bg-white/[0.06] h-1 rounded-full overflow-hidden">
+            <div class="skill-bar-fill bg-gradient-to-r from-white to-gold-400 h-full" data-width="97%"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. DIRECT CONTACTS -->
+    <section id="contact" class="reveal space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3 border-b border-white/[0.08] pb-5">
+        <div>
+          <span class="text-[11px] font-mono uppercase tracking-[0.2em] text-gold-400">Контактная информация</span>
+          <h2 class="text-2xl sm:text-3xl font-bold tracking-tight text-white mt-1">
+            Прямая связь с Mickey
+          </h2>
+        </div>
+        <p class="text-xs font-mono text-zinc-400">
+          Нажмите для перехода или копирования контакта
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+        
+        <!-- Personal Telegram -->
+        <div class="strict-card rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-400 uppercase tracking-wider">Личный Telegram</span>
+            <h3 class="text-lg font-bold text-white mt-1.5 font-mono">@mickey_tme</h3>
+            <p class="text-xs text-zinc-400 mt-1">Прямая связь по проектам и сотрудничеству</p>
+          </div>
+          <div class="mt-6 flex items-center gap-2">
+            <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="btn-strict-gold flex-1 py-2.5 px-3 rounded-lg font-semibold text-xs text-center">Написать</a>
+            <button type="button" data-copy="@mickey_tme" data-label="Telegram @mickey_tme скопирован" class="copy-btn py-2.5 px-3 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-white text-xs font-mono transition">Копия</button>
+          </div>
+        </div>
+
+        <!-- Personal Discord -->
+        <div class="strict-card rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-zinc-300 uppercase tracking-wider">Личный Discord</span>
+            <h3 class="text-lg font-bold text-white mt-1.5 font-mono">me_mickkey</h3>
+            <p class="text-xs text-zinc-400 mt-1">Личный тег для добавления в друзья</p>
+          </div>
+          <div class="mt-6 flex items-center gap-2">
+            <button type="button" data-copy="me_mickkey" data-label="Discord тег me_mickkey скопирован" class="copy-btn flex-1 py-2.5 px-3 rounded-lg bg-white hover:bg-zinc-200 text-black font-semibold text-xs text-center transition">Скопировать тег</button>
+          </div>
+        </div>
+
+        <!-- Studio Website -->
+        <div class="strict-card rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <span class="text-[11px] font-mono text-gold-400 uppercase tracking-wider">Сайт студии</span>
+            <h3 class="text-lg font-bold text-white mt-1.5 font-mono">lumeta.site</h3>
+            <p class="text-xs text-zinc-400 mt-1">Официальный портал Lumeta Code Studio</p>
+          </div>
+          <div class="mt-6 flex items-center gap-2">
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="flex-1 py-2.5 px-3 rounded-lg bg-white/[0.08] hover:bg-gold-400 hover:text-black text-white font-semibold text-xs text-center transition duration-300">Открыть</a>
+            <button type="button" data-copy="https://lumeta.site" data-label="Ссылка lumeta.site скопирована" class="copy-btn py-2.5 px-3 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-white text-xs font-mono transition">Копия</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Strict Footer -->
+  <footer class="relative z-10 border-t border-white/[0.08] bg-[#030305]/90 backdrop-blur-md py-8">
+    <div class="max-w-5xl mx-auto px-4 sm:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500">
+      <div class="flex items-center gap-3">
+        <span class="font-bold text-white tracking-wider">MICKEY</span>
+        <span>—</span>
+        <span>Co-CEO &amp; FOUNDER <strong class="text-zinc-300 font-medium">Lumeta Code Studio</strong> (w/ <strong class="text-zinc-300 font-medium">Twin</strong>)</span>
+      </div>
+      <div class="flex items-center gap-6 font-mono">
+        <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition">Discord</a>
+        <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">Lumeta TG</a>
+        <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="hover:text-gold-400 transition">Лайф.exe</a>
+        <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="hover:text-white transition">lumeta.site</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Detailed Horological Mechanical M Intro Sequence
+    const introOverlay = document.getElementById('introOverlay');
+    const introProgress = document.getElementById('introProgress');
+    const skipIntroBtn = document.getElementById('skipIntroBtn');
+    const replayIntroBtn = document.getElementById('replayIntroBtn');
+    let introTimer = null;
+
+    function resetScrollToTop() {
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    }
+
+    function unlockScroll() {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    function playMechanicalIntro() {
+      if (!introOverlay) return;
+      if (introTimer) clearTimeout(introTimer);
+      resetScrollToTop();
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+      introOverlay.classList.remove('intro-hidden');
+      introOverlay.classList.remove('assemble-active');
+      if (introProgress) introProgress.style.width = '0%';
+
+      setTimeout(function() {
+        resetScrollToTop();
+        introOverlay.classList.add('assemble-active');
+        if (introProgress) introProgress.style.width = '100%';
+      }, 60);
+
+      introTimer = setTimeout(function() {
+        introOverlay.classList.add('intro-hidden');
+        unlockScroll();
+        resetScrollToTop();
+      }, 3100);
+    }
+
+    if (skipIntroBtn && introOverlay) {
+      skipIntroBtn.addEventListener('click', function() {
+        if (introTimer) clearTimeout(introTimer);
+        introOverlay.classList.add('intro-hidden');
+        unlockScroll();
+        resetScrollToTop();
+      });
+    }
+    if (replayIntroBtn) {
+      replayIntroBtn.addEventListener('click', function() {
+        playMechanicalIntro();
+      });
+    }
+
+    // 2. Toast Notification
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = 'px-4 py-3 rounded-lg bg-[#0b0b10]/95 border border-gold-500/60 text-white text-xs font-mono shadow-2xl flex items-center gap-2.5 transition-all duration-300';
+      toast.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-gold-400"></span><span>' + message + '</span>';
+      container.appendChild(toast);
+      setTimeout(function() {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(6px)';
+        setTimeout(function() {
+          if (toast.parentNode) toast.parentNode.removeChild(toast);
+        }, 280);
+      }, 2400);
+    }
+
+    // 3. Clipboard Copy with Fallback
+    function copyTextToClipboard(text, label) {
+      function fallbackCopy(val) {
+        const ta = document.createElement('textarea');
+        ta.value = val;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus();
+        ta.select();
+        try {
+          document.execCommand('copy');
+        } catch (err) {}
+        document.body.removeChild(ta);
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast(label || ('Скопировано: ' + text));
+        }).catch(function() {
+          fallbackCopy(text);
+          showToast(label || ('Скопировано: ' + text));
+        });
+      } else {
+        fallbackCopy(text);
+        showToast(label || ('Скопировано: ' + text));
+      }
+    }
+
+    // 4. Apple Home Kinetic Carousel Pause/Resume Button
+    const toggleCarouselBtn = document.getElementById('toggleCarouselBtn');
+    const appleCarouselContainer = document.getElementById('appleCarouselContainer');
+    let carouselPaused = false;
+    if (toggleCarouselBtn && appleCarouselContainer) {
+      toggleCarouselBtn.addEventListener('click', function() {
+        carouselPaused = !carouselPaused;
+        if (carouselPaused) {
+          appleCarouselContainer.classList.add('apple-carousel-paused');
+          toggleCarouselBtn.textContent = 'Запустить ленту';
+        } else {
+          appleCarouselContainer.classList.remove('apple-carousel-paused');
+          toggleCarouselBtn.textContent = 'Пауза ленты';
+        }
+      });
+    }
+
+    // 5. Smooth Scroll Navigation & Copy Wiring
+    document.querySelectorAll('.nav-scroll-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const targetId = btn.getAttribute('data-scroll');
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+          targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    const sections = ['hero', 'hub', 'studio', 'stack', 'contact'];
+    window.addEventListener('scroll', function() {
+      let current = 'hero';
+      const scrollPos = window.scrollY + 200;
+      sections.forEach(function(secId) {
+        const el = document.getElementById(secId);
+        if (el && el.offsetTop <= scrollPos) {
+          current = secId;
+        }
+      });
+      document.querySelectorAll('.nav-link').forEach(function(link) {
+        if (link.getAttribute('data-scroll') === current) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+    }, { passive: true });
+
+    document.querySelectorAll('.copy-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        const text = btn.getAttribute('data-copy');
+        const label = btn.getAttribute('data-label');
+        if (text) copyTextToClipboard(text, label);
+      });
+    });
+
+    document.querySelectorAll('.strict-card').forEach(function(card) {
+      card.addEventListener('mousemove', function(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', x + 'px');
+        card.style.setProperty('--mouse-y', y + 'px');
+      });
+    });
+
+    // 6. Optimized Aurora Ribbon Waves & Parallax Depth Background Canvas
+    function initDynamicBackground() {
+      const canvas = document.getElementById('bgCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      let mouseX = width * 0.5;
+      let mouseY = height * 0.3;
+
+      window.addEventListener('mousemove', function(e) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+      }, { passive: true });
+
+      window.addEventListener('resize', function() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      });
+
+      const orbs = [];
+      for (let i = 0; i < 28; i++) {
+        orbs.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.0 + 0.6,
+          depth: Math.random() * 0.8 + 0.2,
+          vy: -(Math.random() * 0.24 + 0.06),
+          gold: i % 3 !== 0
+        });
+      }
+
+      let time = 0;
+      function drawBackground() {
+        if (!document.hidden) {
+          time += 0.007;
+          ctx.clearRect(0, 0, width, height);
+
+          const grad = ctx.createRadialGradient(mouseX, mouseY, 10, mouseX, mouseY, 440);
+          grad.addColorStop(0, 'rgba(212, 175, 55, 0.065)');
+          grad.addColorStop(0.5, 'rgba(255, 255, 255, 0.018)');
+          grad.addColorStop(1, 'rgba(4, 4, 6, 0)');
+          ctx.fillStyle = grad;
+          ctx.fillRect(0, 0, width, height);
+
+          for (let w = 0; w < 4; w++) {
+            ctx.beginPath();
+            const baseY = height * (0.25 + w * 0.18);
+            for (let x = 0; x <= width; x += 28) {
+              const y = baseY
+                + Math.sin(x * 0.0022 + time + w * 1.1) * 44
+                + Math.cos(x * 0.0045 - time * 0.7 + w) * 22;
+              if (x === 0) {
+                ctx.moveTo(x, y);
+              } else {
+                ctx.lineTo(x, y);
+              }
+            }
+            ctx.strokeStyle = w % 2 === 0
+              ? 'rgba(212, 175, 55, 0.08)'
+              : 'rgba(255, 255, 255, 0.04)';
+            ctx.lineWidth = 1.1;
+            ctx.stroke();
+          }
+
+          const offsetX = (mouseX - width * 0.5) * 0.018;
+          const offsetY = (mouseY - height * 0.5) * 0.018;
+
+          for (let i = 0; i < orbs.length; i++) {
+            const o = orbs[i];
+            o.y += o.vy * o.depth;
+            if (o.y < -10) {
+              o.y = height + 10;
+              o.x = Math.random() * width;
+            }
+            const px = o.x + offsetX * o.depth;
+            const py = o.y + offsetY * o.depth;
+
+            ctx.beginPath();
+            ctx.arc(px, py, o.r, 0, Math.PI * 2);
+            ctx.fillStyle = o.gold
+              ? 'rgba(245, 197, 66, ' + (0.2 + o.depth * 0.32) + ')'
+              : 'rgba(255, 255, 255, ' + (0.16 + o.depth * 0.22) + ')';
+            ctx.fill();
+          }
+        }
+        requestAnimationFrame(drawBackground);
+      }
+      drawBackground();
+    }
+
+    // 7. Initialize All Systems on Load
+    document.addEventListener('DOMContentLoaded', function() {
+      resetScrollToTop();
+    });
+
+    window.addEventListener('load', function() {
+      resetScrollToTop();
+      playMechanicalIntro();
+      initDynamicBackground();
+
+      const revealEls = document.querySelectorAll('.reveal');
+      const skillBars = document.querySelectorAll('.skill-bar-fill');
+
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              const bars = entry.target.querySelectorAll('.skill-bar-fill');
+              bars.forEach(function(bar) {
+                const w = bar.getAttribute('data-width');
+                if (w) bar.style.width = w;
+              });
+            }
+          });
+        }, { threshold: 0.14 });
+
+        revealEls.forEach(function(el) {
+          observer.observe(el);
+        });
+      } else {
+        revealEls.forEach(function(el) { el.classList.add('visible'); });
+        skillBars.forEach(function(bar) {
+          bar.style.width = bar.getAttribute('data-width') || '95%';
+        });
+      }
+    });
+  </script>
+</body>
+</html>
