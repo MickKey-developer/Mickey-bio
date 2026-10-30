@@ -1,0 +1,2089 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MICKEY — Co-CEO & Co-Founder | Lumeta Code Studio</title>
+  <meta name="description" content="Персональный цифровой хаб MICKEY — Co-CEO & Co-Founder в Lumeta Code Studio. Full-Stack Web, Telegram Mini Apps, 3D Motion и AI & Game Systems." />
+  
+  <!-- Theme Color for Dark / Light modes -->
+  <meta name="theme-color" content="#070708" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#F5F5F7" media="(prefers-color-scheme: light)" />
+
+  <!-- Open Graph / Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mickkey.netlify.app/" />
+  <meta property="og:title" content="MICKEY — Co-CEO & Co-Founder | Lumeta Code Studio" />
+  <meta property="og:description" content="Персональный цифровой хаб MICKEY — Co-CEO & Co-Founder в Lumeta Code Studio (lumeta.site). Инженерия цифровых продуктов, Web, TMA, 3D Motion и AI." />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="MICKEY — Co-CEO & Co-Founder | Lumeta Code Studio" />
+  <meta name="twitter:description" content="Персональный цифровой хаб MICKEY — Co-CEO & Co-Founder в Lumeta Code Studio (lumeta.site)." />
+
+  <!-- Inline SVG Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230A0A0C'/%3E%3Cpath d='M14 46V18h7.5l10.5 16.5L42.5 18H50v28h-6.5V28.5L33.5 44h-3L20.5 28.5V46H14z' fill='%23F5F5F7'/%3E%3C/svg%3E" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'Inter', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Three.js r128 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+
+  <style>
+    /* ==========================================
+       1. DESIGN TOKENS & APPLE MATERIAL SYSTEM
+       ========================================== */
+    :root {
+      --bg-primary: #F5F5F7;
+      --bg-elevated: #FFFFFF;
+      --bg-glass: rgba(255, 255, 255, 0.72);
+      --bg-glass-strong: rgba(255, 255, 255, 0.88);
+      --bg-subtle: rgba(0, 0, 0, 0.04);
+      --text-primary: #1D1D1F;
+      --text-secondary: #515154;
+      --text-muted: #86868B;
+      --border-hairline: rgba(0, 0, 0, 0.08);
+      --border-strong: rgba(0, 0, 0, 0.16);
+      --accent: #4C6EF5;
+      --accent-graphite: #5E81AC;
+      --accent-soft: rgba(94, 129, 172, 0.14);
+      --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.06), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
+      --shadow-float: 0 20px 50px -12px rgba(0, 0, 0, 0.14), 0 0 1px 1px rgba(0, 0, 0, 0.06);
+      --spotlight-color: rgba(94, 129, 172, 0.09);
+      --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+
+    html.dark {
+      --bg-primary: #070708;
+      --bg-elevated: #111114;
+      --bg-glass: rgba(20, 20, 24, 0.68);
+      --bg-glass-strong: rgba(24, 24, 29, 0.86);
+      --bg-subtle: rgba(255, 255, 255, 0.045);
+      --text-primary: #F5F5F7;
+      --text-secondary: #A1A1A6;
+      --text-muted: #6E6E73;
+      --border-hairline: rgba(255, 255, 255, 0.085);
+      --border-strong: rgba(255, 255, 255, 0.18);
+      --accent-graphite: #7AA2F7;
+      --accent-soft: rgba(122, 162, 247, 0.14);
+      --shadow-card: 0 20px 44px -15px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.06);
+      --shadow-float: 0 28px 64px -12px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.1);
+      --spotlight-color: rgba(122, 162, 247, 0.11);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Inter", sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      overflow-x: hidden;
+      transition: background-color 0.45s var(--ease-spring), color 0.45s var(--ease-spring), filter 0.5s ease;
+    }
+
+    /* Valid CSS Selection */
+    ::selection {
+      background-color: var(--accent-graphite);
+      color: #FFFFFF;
+    }
+
+    /* Konami Negative Mode */
+    body.konami-negative {
+      filter: invert(1) hue-rotate(180deg);
+    }
+
+    /* Accessible Focus Ring */
+    :focus-visible {
+      outline: 2px solid var(--accent-graphite);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    /* Typography Tracking */
+    .apple-headline {
+      letter-spacing: -0.04em;
+      line-height: 1.04;
+    }
+    .apple-title {
+      letter-spacing: -0.03em;
+      line-height: 1.12;
+    }
+
+    /* Glass & Bento Surfaces */
+    .glass-pill {
+      background: var(--bg-glass);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid var(--border-hairline);
+      box-shadow: var(--shadow-float);
+    }
+
+    .bento-card {
+      position: relative;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-hairline);
+      border-radius: 28px;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.45s var(--ease-spring), border-color 0.35s ease, box-shadow 0.45s var(--ease-spring), background-color 0.45s var(--ease-spring);
+      overflow: hidden;
+    }
+
+    .bento-card:hover {
+      border-color: var(--border-strong);
+    }
+
+    .bento-card-sm {
+      border-radius: 16px;
+    }
+
+    /* Spotlight Hover Effect */
+    .spotlight-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        520px circle at var(--mouse-x, -500px) var(--mouse-y, -500px),
+        var(--spotlight-color),
+        transparent 45%
+      );
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .spotlight-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Dynamic Island Expansion */
+    .dynamic-island {
+      transition: all 0.5s var(--ease-spring);
+      max-width: 240px;
+      overflow: hidden;
+    }
+    .dynamic-island:hover,
+    .dynamic-island:focus-within,
+    .dynamic-island.is-expanded {
+      max-width: 520px;
+      background: var(--bg-glass-strong);
+      border-color: var(--accent-graphite);
+    }
+    .island-details {
+      max-width: 0;
+      opacity: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      transition: max-width 0.5s var(--ease-spring), opacity 0.35s ease, margin 0.4s var(--ease-spring);
+    }
+    .dynamic-island:hover .island-details,
+    .dynamic-island:focus-within .island-details,
+    .dynamic-island.is-expanded .island-details {
+      max-width: 320px;
+      opacity: 1;
+      margin-left: 10px;
+    }
+
+    /* Line-by-line Hero Mask Reveal */
+    .mask-line {
+      overflow: hidden;
+      display: block;
+    }
+    .mask-line-inner {
+      display: block;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.85s var(--ease-spring), opacity 0.65s var(--ease-spring);
+    }
+    body.loaded .mask-line-inner {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    /* Scroll Reveal Animations */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s var(--ease-spring), transform 0.7s var(--ease-spring);
+    }
+    .reveal-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Infinite Ticker */
+    @keyframes tickerMove {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+    .ticker-track {
+      display: flex;
+      width: max-content;
+      animation: tickerMove 36s linear infinite;
+    }
+    .ticker-track:hover {
+      animation-play-state: paused;
+    }
+
+    /* Accordion smooth height */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.45s var(--ease-spring);
+    }
+    .accordion-content.is-open {
+      grid-template-rows: 1fr;
+    }
+    .accordion-inner {
+      overflow: hidden;
+    }
+
+    /* Terminal Cursor */
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+
+    /* Reduced Motion Preferences */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+      .ticker-track {
+        animation: none !important;
+      }
+      .mask-line-inner, .reveal-up {
+        transform: none !important;
+        opacity: 1 !important;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#5E81AC] selection:text-white antialiased">
+
+  <!-- ==========================================
+       PRELOADER (00 -> 100%) WITH SKIP [ESC]
+       ========================================== -->
+  <div id="preloader" role="status" aria-live="polite" class="fixed inset-0 z-[100] flex flex-col justify-between p-6 sm:p-12 bg-[var(--bg-primary)] transition-opacity duration-500">
+    <div class="flex items-center justify-between w-full max-w-7xl mx-auto">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-[var(--accent-graphite)] animate-pulse"></span>
+        <span class="font-mono text-xs tracking-widest uppercase text-[var(--text-secondary)]">MICKEY // SYSTEM INITIALIZATION</span>
+      </div>
+      <button id="skip-preloader" type="button" class="font-mono text-xs px-3 py-1.5 rounded-lg border border-[var(--border-hairline)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-strong)] transition">
+        SKIP [ESC]
+      </button>
+    </div>
+
+    <div class="my-auto w-full max-w-md mx-auto text-center">
+      <div id="preloader-counter" class="apple-headline text-6xl sm:text-8xl font-semibold tracking-tight mb-6 font-mono">
+        00%
+      </div>
+      <div class="w-full h-[2px] bg-[var(--border-hairline)] rounded-full overflow-hidden">
+        <div id="preloader-bar" class="h-full bg-[var(--text-primary)] transition-all duration-150 ease-out" style="width: 0%"></div>
+      </div>
+      <p class="mt-4 font-mono text-[11px] uppercase tracking-widest text-[var(--text-muted)]">
+        LUMETA CODE STUDIO ARCHITECTURE
+      </p>
+    </div>
+
+    <div class="flex items-center justify-between w-full max-w-7xl mx-auto font-mono text-[11px] text-[var(--text-muted)]">
+      <span>RENDER: WEBGL / THREE.JS r128</span>
+      <span>60/120 FPS TARGET</span>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       FLOATING CAPSULE HEADER (macOS / visionOS)
+       ========================================== -->
+  <header class="fixed top-4 inset-x-0 z-50 px-4 sm:px-6 pointer-events-none">
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-2 pointer-events-auto glass-pill rounded-full px-3 sm:px-5 py-2.5">
+      
+      <!-- Brand + Dynamic Island Status -->
+      <div class="flex items-center gap-2.5 sm:gap-3">
+        <a href="#hero" class="font-semibold tracking-tight text-sm sm:text-base px-2 py-0.5 rounded-md hover:opacity-80 transition">
+          MICKEY
+        </a>
+
+        <!-- Dynamic Island Pill -->
+        <div id="dynamic-island" tabindex="0" role="region" aria-label="Статус доступности" class="dynamic-island flex items-center rounded-full px-3 py-1 bg-[var(--bg-subtle)] border border-[var(--border-hairline)] cursor-pointer select-none">
+          <span class="relative flex h-2 w-2 shrink-0">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="ml-2 font-mono text-[11px] tracking-wider uppercase font-medium whitespace-nowrap">
+            AVAILABLE FOR PROJECTS
+          </span>
+
+          <!-- Expanded Dynamic Island Content -->
+          <div class="island-details flex items-center gap-2.5 font-mono text-[11px] text-[var(--text-secondary)]">
+            <span class="opacity-40">|</span>
+            <span id="island-clock">МСК --:--</span>
+            <span class="hidden md:inline text-[var(--text-muted)]">• отвечаю в Telegram</span>
+            <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="px-2 py-0.5 rounded-full bg-[var(--text-primary)] text-[var(--bg-primary)] font-sans font-medium text-[11px] hover:opacity-90 transition">
+              Написать
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Links (Scroll-Spy) -->
+      <nav aria-label="Основная навигация" class="hidden lg:flex items-center gap-1">
+        <a href="#studio" data-nav="studio" class="nav-link px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          STUDIO
+        </a>
+        <a href="#links" data-nav="links" class="nav-link px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          LINKS
+        </a>
+        <a href="#craft" data-nav="craft" class="nav-link px-3.5 py-1.5 rounded-full text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          CRAFT
+        </a>
+      </nav>
+
+      <!-- Right Controls: UTC+3 Clock, Cmd+K, Sound, Theme -->
+      <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="hidden xl:flex items-center gap-1.5 font-mono text-[11px] text-[var(--text-secondary)] px-2.5 py-1 rounded-full bg-[var(--bg-subtle)]">
+          <span>UTC+3</span>
+          <span id="header-clock" class="text-[var(--text-primary)] font-medium">00:00:00</span>
+        </div>
+
+        <!-- Command Palette Trigger -->
+        <button id="cmdk-trigger" type="button" aria-label="Открыть командную палитру (Cmd+K)" class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          <span class="hidden sm:inline text-[11px]">Поиск</span>
+          <kbd class="text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-elevated)] text-[var(--text-primary)] border border-[var(--border-hairline)]">⌘K</kbd>
+        </button>
+
+        <!-- Sound Toggle -->
+        <button id="sound-toggle" type="button" aria-pressed="true" aria-label="Переключить звук (S)" title="Звуковой отклик (клавиша S)" class="p-2 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[var(--text-primary)] transition">
+          <svg id="sound-icon-on" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 010 7.07M19.07 4.93a10 10 0 010 14.14" />
+          </svg>
+          <svg id="sound-icon-off" class="w-3.5 h-3.5 hidden text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5L6 9H2v6h4l5 4V5zM23 9l-6 6M17 9l6 6" />
+          </svg>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" type="button" aria-label="Переключить тему (T)" title="Сменить тему (клавиша T)" class="p-2 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[var(--text-primary)] transition">
+          <!-- Sun Icon -->
+          <svg id="theme-icon-light" class="w-3.5 h-3.5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <circle cx="12" cy="12" r="4" />
+            <path stroke-linecap="round" d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41" />
+          </svg>
+          <!-- Moon Icon -->
+          <svg id="theme-icon-dark" class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+          </svg>
+        </button>
+
+        <!-- Shortcuts Help (?) -->
+        <button id="shortcuts-trigger" type="button" aria-label="Горячие клавиши (?)" title="Шпаргалка по клавишам (?)" class="hidden sm:flex items-center justify-center w-7 h-7 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] font-mono text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+          ?
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT
+       ========================================== -->
+  <main id="main-content" class="pt-28 sm:pt-36 pb-24">
+
+    <!-- 1. HERO SECTION -->
+    <section id="hero" class="max-w-6xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- Left Column: Typography, Roles, CTAs, Metrics -->
+        <div class="lg:col-span-7 space-y-6 sm:space-y-8">
+          
+          <!-- Co-CEO Badge & Verified -->
+          <div class="mask-line">
+            <div class="mask-line-inner flex flex-wrap items-center gap-2.5" style="transition-delay: 80ms;">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono uppercase tracking-wider bg-[var(--bg-subtle)] border border-[var(--border-hairline)]">
+                Co-CEO &amp; Co-Founder @ Lumeta Code Studio
+              </span>
+              <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-mono font-medium bg-[var(--accent-soft)] text-[var(--accent-graphite)] border border-[var(--accent-graphite)]/30">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clip-rule="evenodd" />
+                </svg>
+                VERIFIED
+              </span>
+            </div>
+          </div>
+
+          <!-- Display Title: MICKEY -->
+          <h1 class="apple-headline text-6xl sm:text-7xl md:text-8xl font-semibold tracking-tight">
+            <span class="mask-line">
+              <span class="mask-line-inner" style="transition-delay: 160ms;">MICKEY</span>
+            </span>
+          </h1>
+
+          <!-- Hero Description -->
+          <div class="mask-line">
+            <p class="mask-line-inner text-base sm:text-xl text-[var(--text-secondary)] max-w-2xl leading-relaxed font-normal" style="transition-delay: 240ms;">
+              Сооснователь и руководитель <strong class="text-[var(--text-primary)] font-medium">Lumeta Code Studio</strong>. Проектирую и запускаю высоконагруженные веб-платформы, Telegram Mini Apps, интерактивную 3D-графику и ИИ-системы с бескомпромиссным вниманием к эстетике и производительности.
+            </p>
+          </div>
+
+          <!-- 4 Role Tags -->
+          <div class="mask-line">
+            <div class="mask-line-inner flex flex-wrap gap-2" style="transition-delay: 320ms;">
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono bg-[var(--bg-elevated)] border border-[var(--border-hairline)] text-[var(--text-primary)]">
+                Co-CEO &amp; Co-Founder
+              </span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono bg-[var(--bg-elevated)] border border-[var(--border-hairline)] text-[var(--text-primary)]">
+                Full-Stack Architecture
+              </span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono bg-[var(--bg-elevated)] border border-[var(--border-hairline)] text-[var(--text-primary)]">
+                Telegram Mini Apps
+              </span>
+              <span class="px-3.5 py-1.5 rounded-xl text-xs font-mono bg-[var(--bg-elevated)] border border-[var(--border-hairline)] text-[var(--text-primary)]">
+                Motion &amp; AI Systems
+              </span>
+            </div>
+          </div>
+
+          <!-- 2 Magnetic CTAs -->
+          <div class="mask-line pt-1">
+            <div class="mask-line-inner flex flex-wrap items-center gap-3.5" style="transition-delay: 400ms;">
+              <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-medium text-sm sm:text-base shadow-sm hover:opacity-90 transition">
+                <span>Связаться в Telegram</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+              <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="magnetic-btn inline-flex items-center gap-2 px-6 py-3.5 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[var(--text-primary)] font-medium text-sm sm:text-base transition">
+                <span>Портал Lumeta Studio</span>
+                <span class="font-mono text-xs text-[var(--text-muted)]">↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Animated Metrics (60/120 FPS, FULL-CYCLE) -->
+          <div class="grid grid-cols-2 gap-4 pt-4 max-w-lg reveal-up">
+            <div class="bento-card bento-card-sm p-4 sm:p-5">
+              <div class="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)] mb-1">
+                ЧАСТОТА ОТКЛИКА ИНТЕРФЕЙСОВ
+              </div>
+              <div class="text-2xl sm:text-3xl font-semibold tracking-tight font-mono">
+                <span class="count-up" data-target="60">0</span>/<span class="count-up" data-target="120">0</span> <span class="text-sm font-normal text-[var(--text-secondary)]">FPS</span>
+              </div>
+            </div>
+
+            <div class="bento-card bento-card-sm p-4 sm:p-5">
+              <div class="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)] mb-1">
+                АРХИТЕКТУРА ПРОДУКТА
+              </div>
+              <div class="text-2xl sm:text-3xl font-semibold tracking-tight font-mono">
+                FULL-CYCLE
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive 3D Monogram "M" (Three.js r128) -->
+        <div class="lg:col-span-5">
+          <div id="monogram-card" class="bento-card spotlight-card relative h-[380px] sm:h-[460px] flex flex-col justify-between p-6 select-none cursor-pointer group" role="button" tabindex="0" aria-label="Интерактивная 3D-монограмма M. Нажмите для смены режима шейдера">
+            
+            <!-- Top Telemetry Bar -->
+            <div class="relative z-10 flex items-center justify-between font-mono text-[11px] text-[var(--text-secondary)]">
+              <span class="flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-[var(--accent-graphite)]"></span>
+                <span>MONOGRAM // 3D ENGINE</span>
+              </span>
+              <span id="shader-mode-label" class="px-2.5 py-0.5 rounded-full bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-primary)]">
+                HYBRID CHROME
+              </span>
+            </div>
+
+            <!-- Three.js Canvas Container -->
+            <div id="three-container" class="absolute inset-0 w-full h-full z-0"></div>
+
+            <!-- Bottom Hint -->
+            <div class="relative z-10 flex items-center justify-between font-mono text-[11px] text-[var(--text-muted)]">
+              <span>DRAG / TILT PARALLAX</span>
+              <span class="group-hover:text-[var(--text-primary)] transition">КЛИК — СМЕНИТЬ ШЕЙДЕР ↻</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. TICKER (БЕГУЩАЯ СТРОКА) -->
+    <section aria-label="Ключевые компетенции" class="py-5 border-y border-[var(--border-hairline)] bg-[var(--bg-elevated)]/50 overflow-hidden mb-24 sm:mb-32">
+      <div class="ticker-track font-mono text-xs sm:text-sm uppercase tracking-widest text-[var(--text-secondary)]">
+        <div class="flex items-center gap-10 px-5">
+          <span>LUMETA CODE STUDIO</span><span>•</span>
+          <span>HIGH-END WEB ENGINEERING</span><span>•</span>
+          <span>TELEGRAM MINI APPS (TMA)</span><span>•</span>
+          <span>3D MOTION &amp; SHADERS</span><span>•</span>
+          <span>AI &amp; GAME SYSTEMS</span><span>•</span>
+          <span>FULL-CYCLE PRODUCTION</span><span>•</span>
+          <span>lumeta.site</span><span>•</span>
+        </div>
+        <div class="flex items-center gap-10 px-5" aria-hidden="true">
+          <span>LUMETA CODE STUDIO</span><span>•</span>
+          <span>HIGH-END WEB ENGINEERING</span><span>•</span>
+          <span>TELEGRAM MINI APPS (TMA)</span><span>•</span>
+          <span>3D MOTION &amp; SHADERS</span><span>•</span>
+          <span>AI &amp; GAME SYSTEMS</span><span>•</span>
+          <span>FULL-CYCLE PRODUCTION</span><span>•</span>
+          <span>lumeta.site</span><span>•</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LUMETA CODE STUDIO SECTION (4 Вкладки + Официальный портал) -->
+    <section id="studio" class="max-w-6xl mx-auto px-4 sm:px-6 mb-28 sm:mb-36 scroll-mt-28">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-up">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent-graphite)] mb-2">
+            01 // LUMETA CODE STUDIO
+          </p>
+          <h2 class="apple-title text-3xl sm:text-5xl font-semibold">
+            Инженерная студия полного цикла.
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-[var(--text-secondary)] max-w-md">
+          Четыре профильных направления разработки под единым стандартом архитектуры и визуальной чистоты.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-stretch">
+        
+        <!-- Left: 4 Interactive Directions Tabs -->
+        <div class="lg:col-span-7 bento-card spotlight-card p-6 sm:p-8 flex flex-col justify-between reveal-up">
+          <div>
+            <!-- Sliding Pill Tablist -->
+            <div id="studio-tablist" role="tablist" aria-label="Направления Lumeta Code Studio" class="relative grid grid-cols-2 sm:grid-cols-4 gap-1 p-1.5 rounded-2xl bg-[var(--bg-subtle)] border border-[var(--border-hairline)] mb-8">
+              <!-- Sliding Active Indicator -->
+              <div id="tab-indicator" class="absolute top-1.5 bottom-1.5 left-1.5 rounded-xl bg-[var(--bg-elevated)] shadow-sm border border-[var(--border-hairline)] transition-all duration-300 ease-out pointer-events-none hidden sm:block" style="width: calc(25% - 6px);"></div>
+
+              <button role="tab" aria-selected="true" aria-controls="panel-web" id="tab-web" data-tab="0" class="studio-tab relative z-10 py-2.5 px-3 rounded-xl font-mono text-xs font-medium transition text-[var(--text-primary)]">
+                Web
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="panel-tma" id="tab-tma" data-tab="1" class="studio-tab relative z-10 py-2.5 px-3 rounded-xl font-mono text-xs font-medium transition text-[var(--text-secondary)]">
+                TMA
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="panel-motion" id="tab-motion" data-tab="2" class="studio-tab relative z-10 py-2.5 px-3 rounded-xl font-mono text-xs font-medium transition text-[var(--text-secondary)]">
+                3D Motion
+              </button>
+              <button role="tab" aria-selected="false" aria-controls="panel-ai" id="tab-ai" data-tab="3" class="studio-tab relative z-10 py-2.5 px-3 rounded-xl font-mono text-xs font-medium transition text-[var(--text-secondary)]">
+                AI &amp; Game
+              </button>
+            </div>
+
+            <!-- Tab Panels Container -->
+            <div id="studio-panels-wrapper" class="relative transition-all duration-300">
+              
+              <!-- Panel 0: Web -->
+              <div id="panel-web" role="tabpanel" aria-labelledby="tab-web" class="studio-panel space-y-4">
+                <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent-graphite)]">
+                  <span>DIRECTION 01 // FULL-STACK WEB</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  Веб-платформы и продуктовые сайты
+                </h3>
+                <p class="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+                  Разработка кастомных веб-приложений, корпоративных порталов и интерактивных промо-сайтов. Реактивный фронтенд, отказоустойчивый бэкенд, продуманная микро-анимация и мгновенная загрузка.
+                </p>
+                <div class="pt-3 flex flex-wrap gap-2 font-mono text-xs text-[var(--text-secondary)]">
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">React / Next.js</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">TypeScript</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">High-Load API</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Design Systems</span>
+                </div>
+              </div>
+
+              <!-- Panel 1: TMA -->
+              <div id="panel-tma" role="tabpanel" aria-labelledby="tab-tma" class="studio-panel hidden space-y-4">
+                <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent-graphite)]">
+                  <span>DIRECTION 02 // TELEGRAM MINI APPS</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  Экосистема Telegram Mini Apps
+                </h3>
+                <p class="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+                  Полноценные веб-приложения внутри Telegram с нативным UX, плавной навигацией, интеграцией платежей, геймификацией и синхронизацией с высоконагруженными ботами.
+                </p>
+                <div class="pt-3 flex flex-wrap gap-2 font-mono text-xs text-[var(--text-secondary)]">
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Telegram WebApp SDK</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Haptic Feedback</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Bot API Sync</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">In-App Billing</span>
+                </div>
+              </div>
+
+              <!-- Panel 2: 3D Motion -->
+              <div id="panel-motion" role="tabpanel" aria-labelledby="tab-motion" class="studio-panel hidden space-y-4">
+                <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent-graphite)]">
+                  <span>DIRECTION 03 // 3D &amp; MOTION DESIGN</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  Интерактивный 3D и моушн-дизайн
+                </h3>
+                <p class="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+                  Визуальные шоурилы, WebGL-сцены на Three.js, шейдерные переходы и продуктовая анимация, превращающая интерфейс в запоминающийся цифровой опыт.
+                </p>
+                <div class="pt-3 flex flex-wrap gap-2 font-mono text-xs text-[var(--text-secondary)]">
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Three.js / WebGL</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">GLSL Shaders</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Motion Graphics</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">UI Showreels</span>
+                </div>
+              </div>
+
+              <!-- Panel 3: AI & Game Systems -->
+              <div id="panel-ai" role="tabpanel" aria-labelledby="tab-ai" class="studio-panel hidden space-y-4">
+                <div class="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent-graphite)]">
+                  <span>DIRECTION 04 // AI &amp; GAME SYSTEMS</span>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight">
+                  ИИ-интеграции и игровые механики
+                </h3>
+                <p class="text-[var(--text-secondary)] leading-relaxed text-sm sm:text-base">
+                  Внедрение LLM-агентов, автоматизация бизнес-процессов, кроссплатформенные десктоп-решения (Tauri / Rust) и проектирование сбалансированных игровых систем и механик.
+                </p>
+                <div class="pt-3 flex flex-wrap gap-2 font-mono text-xs text-[var(--text-secondary)]">
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">AI API Pipelines</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Tauri v2 / Rust</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">Game Mechanics</span>
+                  <span class="px-3 py-1 rounded-lg bg-[var(--bg-subtle)]">System Balancing</span>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Bottom Studio Action Bar -->
+          <div class="mt-8 pt-6 border-t border-[var(--border-hairline)] flex flex-wrap items-center justify-between gap-4">
+            <span class="font-mono text-xs text-[var(--text-muted)]">
+              Используйте ← → для переключения вкладок
+            </span>
+            <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-mono text-xs font-medium text-[var(--text-primary)] hover:text-[var(--accent-graphite)] transition">
+              <span>ОБСУДИТЬ ПРОЕКТ С МЕНЕДЖЕРОМ (@Lumeta_Manager)</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Official Portal Card with Telemetry -->
+        <div class="lg:col-span-5 bento-card spotlight-card p-6 sm:p-8 flex flex-col justify-between reveal-up">
+          <div class="space-y-6">
+            <div class="flex items-center justify-between">
+              <span class="px-3 py-1 rounded-full font-mono text-[11px] uppercase bg-[var(--bg-subtle)] border border-[var(--border-hairline)]">
+                ОФИЦИАЛЬНЫЙ ПОРТАЛ
+              </span>
+              <span class="flex items-center gap-1.5 font-mono text-xs text-emerald-500">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                ONLINE
+              </span>
+            </div>
+
+            <div>
+              <h3 class="text-2xl sm:text-3xl font-semibold tracking-tight mb-2">
+                lumeta.site
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                Центральный хаб Lumeta Code Studio: витрина компетенций, архитектура решений и прямой запуск клиентских проектов.
+              </p>
+            </div>
+
+            <!-- Telemetry Block -->
+            <div class="p-4 rounded-2xl bg-[var(--bg-subtle)] border border-[var(--border-hairline)] space-y-2.5 font-mono text-xs">
+              <div class="flex justify-between">
+                <span class="text-[var(--text-muted)]">LEADERSHIP:</span>
+                <span class="text-[var(--text-primary)]">MICKEY &amp; TWIN (Co-CEOs)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[var(--text-muted)]">STACK MODE:</span>
+                <span class="text-[var(--text-primary)]">WEB / TMA / 3D / AI</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-[var(--text-muted)]">DIRECT DESK:</span>
+                <span class="text-[var(--accent-graphite)]">@Lumeta_Manager</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-[var(--border-hairline)] flex flex-col sm:flex-row gap-3">
+            <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="magnetic-btn flex-1 text-center py-3 px-4 rounded-xl bg-[var(--text-primary)] text-[var(--bg-primary)] font-medium text-sm hover:opacity-90 transition">
+              Перейти на lumeta.site ↗
+            </a>
+            <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="magnetic-btn text-center py-3 px-4 rounded-xl bg-[var(--bg-subtle)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-sm font-medium transition">
+              @Lumeta_Manager
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. ECOSYSTEM SECTION (6 КАРТОЧЕК С 3D TILT + SPOTLIGHT) -->
+    <section id="links" class="max-w-6xl mx-auto px-4 sm:px-6 mb-28 sm:mb-36 scroll-mt-28">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-up">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent-graphite)] mb-2">
+            02 // DIGITAL ECOSYSTEM
+          </p>
+          <h2 class="apple-title text-3xl sm:text-5xl font-semibold">
+            Прямые каналы и сообщество.
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-[var(--text-secondary)] max-w-md">
+          Все ключевые точки контакта, авторские медиа и комьюнити в одной синхронизированной сетке.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
+        
+        <!-- Card 1: Личный Telegram -->
+        <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between group reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
+                DIRECT CONTACT
+              </span>
+              <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition">↗</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Личный Telegram</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Прямая связь со мной по стратегическим вопросам, партнёрству и крупным проектам.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs">
+            <span class="text-[var(--accent-graphite)]">@mickey_tme</span>
+            <span class="text-[var(--text-muted)]">t.me/mickey_tme</span>
+          </div>
+        </a>
+
+        <!-- Card 2: Канал студии Lumeta Code Studio -->
+        <a href="https://t.me/+udCJH_8p0bk0Y2Fk" target="_blank" rel="noopener noreferrer" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between group reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
+                STUDIO CHANNEL
+              </span>
+              <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition">↗</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Lumeta Code Studio</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Официальный Telegram-канал студии: релизы, внутренняя кухня разработки, шоурилы и технологические разборы.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs">
+            <span class="text-[var(--text-primary)]">Telegram Channel</span>
+            <span class="text-[var(--text-muted)]">Подписаться →</span>
+          </div>
+        </a>
+
+        <!-- Card 3: Авторский блог «Лайф.exe» -->
+        <a href="https://t.me/+oWnbhYiUYn9iY2Y0" target="_blank" rel="noopener noreferrer" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between group reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
+                PERSONAL BLOG
+              </span>
+              <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition">↗</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Блог «Лайф.exe»</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Личный канал: мысли об управлении студией, дизайн-эксперименты, код, инсайты и лайфстайл без фильтров.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs">
+            <span class="text-[var(--text-primary)]">Лайф.exe</span>
+            <span class="text-[var(--text-muted)]">Читать блог →</span>
+          </div>
+        </a>
+
+        <!-- Card 4: Discord-сообщество -->
+        <a href="https://discord.gg/Tgu4dCdzp" target="_blank" rel="noopener noreferrer" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between group reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
+                DISCORD SERVER
+              </span>
+              <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition">↗</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Discord-сообщество</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Сервер комьюнити Mickey: голосовые каналы, совместные проекты, геймдев и нетворкинг разработчиков.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs">
+            <span class="text-[var(--text-primary)]">discord.gg/Tgu4dCdzp</span>
+            <span class="text-[var(--text-muted)]">Войти →</span>
+          </div>
+        </a>
+
+        <!-- Card 5: Копирование Discord-ника me_mickkey -->
+        <button id="copy-discord-card" type="button" data-copy="me_mickkey" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between text-left group cursor-pointer reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--bg-subtle)] border border-[var(--border-hairline)] text-[var(--text-secondary)]">
+                DISCORD ID // CLICK TO COPY
+              </span>
+              <!-- Morphing Copy / Check Icon -->
+              <span class="w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center">
+                <svg id="discord-copy-icon" class="w-3.5 h-3.5 text-[var(--text-primary)] transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"></path>
+                </svg>
+                <svg id="discord-check-icon" class="w-4 h-4 text-emerald-500 hidden transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              </span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Личный Discord ID</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Нажмите на карточку, чтобы мгновенно скопировать тег для добавления в друзья в Discord.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs w-full">
+            <span class="text-[var(--accent-graphite)] font-medium">me_mickkey</span>
+            <span id="discord-copy-label" class="text-[var(--text-muted)]">Скопировать в 1 клик</span>
+          </div>
+        </button>
+
+        <!-- Card 6: Lumeta Менеджер -->
+        <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="tilt-card bento-card spotlight-card p-6 sm:p-7 flex flex-col justify-between group reveal-up">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="font-mono text-xs px-2.5 py-1 rounded-md bg-[var(--accent-soft)] text-[var(--accent-graphite)] border border-[var(--accent-graphite)]/30">
+                CLIENT DESK
+              </span>
+              <span class="text-lg group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition">↗</span>
+            </div>
+            <h3 class="text-xl font-semibold mb-2">Lumeta Менеджер</h3>
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+              Единое окно для оценки проекта, брифинга и заказа разработки в Lumeta Code Studio.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-xs">
+            <span class="text-[var(--accent-graphite)]">@Lumeta_Manager</span>
+            <span class="text-[var(--text-muted)]">Заказать проект →</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- 5. CRAFT SECTION (Аккордеон из 4 навыков + Манифест + Терминал Quick Connect) -->
+    <section id="craft" class="max-w-6xl mx-auto px-4 sm:px-6 mb-28 sm:mb-36 scroll-mt-28">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4 reveal-up">
+        <div>
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent-graphite)] mb-2">
+            03 // ENGINEERING &amp; CRAFT
+          </p>
+          <h2 class="apple-title text-3xl sm:text-5xl font-semibold">
+            Архитектура, код и арт-директинг.
+          </h2>
+        </div>
+        <p class="text-sm sm:text-base text-[var(--text-secondary)] max-w-md">
+          Сочетание инженерной дисциплины и визуального минимализма в каждом узле системы.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8">
+        
+        <!-- Left: 4-Skill Accordion -->
+        <div class="lg:col-span-7 bento-card p-6 sm:p-8 reveal-up">
+          <div class="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)] mb-6">
+            CORE COMPETENCIES // ACCORDION
+          </div>
+
+          <div id="craft-accordion" class="divide-y divide-[var(--border-hairline)]">
+            
+            <!-- Item 1 -->
+            <div class="py-4 first:pt-0">
+              <button type="button" aria-expanded="true" class="accordion-trigger w-full flex items-center justify-between text-left py-2 group">
+                <span class="text-lg sm:text-xl font-medium">01. Full-Stack Web &amp; High-End Frontend</span>
+                <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300 rotate-45">+</span>
+              </button>
+              <div class="accordion-content is-open">
+                <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                  Проектирование масштабируемых веб-систем, кастомных интерфейсов и десктоп-приложений (Tauri v2 / Rust / React). Чистая модульная архитектура и стабильные 60/120 FPS.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="py-4">
+              <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2 group">
+                <span class="text-lg sm:text-xl font-medium">02. Экосистемы Telegram Mini Apps (TMA)</span>
+                <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                  Бесшовные WebApp-приложения внутри Telegram: от продуманного UI и тактильного отклика до безопасного бэкенда и сложных сценариев монетизации.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="py-4">
+              <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2 group">
+                <span class="text-lg sm:text-xl font-medium">03. Визуальный арт-директинг и 3D Motion</span>
+                <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                  Создание дорогой минималистичной эстетики: интерактивный WebGL (Three.js), выверенная типографика, физика движения и презентационные UI-шоурилы.
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="py-4 last:pb-0">
+              <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2 group">
+                <span class="text-lg sm:text-xl font-medium">04. AI-интеграции и игровые системы</span>
+                <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+              </button>
+              <div class="accordion-content">
+                <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                  Интеграция языковых моделей и ИИ-сервисов в рабочие продукты, а также разработка комплексных игровых механик, карт и внутриигрового экономического баланса.
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right Column: Manifesto Quote + Terminal Quick Connect -->
+        <div class="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+          
+          <!-- Manifesto Card -->
+          <div class="bento-card spotlight-card p-6 sm:p-8 reveal-up">
+            <div class="font-mono text-xs uppercase tracking-wider text-[var(--accent-graphite)] mb-3">
+              MANIFESTO // PHILOSOPHY
+            </div>
+            <blockquote class="text-lg sm:text-xl font-medium leading-snug tracking-tight mb-4">
+              «Роскошь в цифровом продукте — это отсутствие визуального шума, мгновенный отклик интерфейса и точность каждой инженерной детали».
+            </blockquote>
+            <div class="font-mono text-xs text-[var(--text-muted)]">
+              — MICKEY, Co-CEO @ Lumeta Code Studio
+            </div>
+          </div>
+
+          <!-- Quick Connect Terminal -->
+          <div id="terminal-card" class="bento-card p-6 sm:p-7 font-mono text-xs flex-1 flex flex-col justify-between reveal-up">
+            <div>
+              <!-- macOS Window Controls -->
+              <div class="flex items-center justify-between pb-4 mb-4 border-b border-[var(--border-hairline)]">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-amber-500/80"></span>
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-500/80"></span>
+                </div>
+                <span class="text-[11px] text-[var(--text-muted)]">quick-connect — zsh</span>
+              </div>
+
+              <!-- Terminal Typed Lines with Per-Line Copy -->
+              <div class="space-y-2.5">
+                <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-[var(--bg-subtle)]">
+                  <div class="truncate">
+                    <span class="text-[var(--accent-graphite)]">$</span>
+                    <span class="term-line" data-text="connect --telegram @mickey_tme"></span>
+                  </div>
+                  <button type="button" data-copy="@mickey_tme" class="copy-line-btn shrink-0 px-2 py-1 rounded bg-[var(--bg-elevated)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[10px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+                    COPY
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-[var(--bg-subtle)]">
+                  <div class="truncate">
+                    <span class="text-[var(--accent-graphite)]">$</span>
+                    <span class="term-line" data-text="order --studio @Lumeta_Manager"></span>
+                  </div>
+                  <button type="button" data-copy="@Lumeta_Manager" class="copy-line-btn shrink-0 px-2 py-1 rounded bg-[var(--bg-elevated)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[10px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+                    COPY
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-[var(--bg-subtle)]">
+                  <div class="truncate">
+                    <span class="text-[var(--accent-graphite)]">$</span>
+                    <span class="term-line" data-text="discord --add me_mickkey"></span>
+                  </div>
+                  <button type="button" data-copy="me_mickkey" class="copy-line-btn shrink-0 px-2 py-1 rounded bg-[var(--bg-elevated)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[10px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+                    COPY
+                  </button>
+                </div>
+
+                <div class="flex items-center justify-between gap-2 p-2 rounded-lg bg-[var(--bg-subtle)]">
+                  <div class="truncate">
+                    <span class="text-[var(--accent-graphite)]">$</span>
+                    <span class="term-line" data-text="open https://lumeta.site"></span>
+                    <span class="cursor-blink inline-block w-1.5 h-3.5 bg-[var(--accent-graphite)] align-middle ml-1"></span>
+                  </div>
+                  <button type="button" data-copy="https://lumeta.site" class="copy-line-btn shrink-0 px-2 py-1 rounded bg-[var(--bg-elevated)] border border-[var(--border-hairline)] hover:border-[var(--border-strong)] text-[10px] text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition">
+                    COPY
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-5 pt-3 border-t border-[var(--border-hairline)] flex items-center justify-between text-[11px] text-[var(--text-muted)]">
+              <span>STATUS: READY</span>
+              <span>EXIT CODE: 0</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. «КАК МЫ РАБОТАЕМ» (4 шага процесса — Sticky Scroll Story) -->
+    <section id="process" class="max-w-6xl mx-auto px-4 sm:px-6 mb-28 sm:mb-36">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        
+        <!-- Sticky Left Overview -->
+        <div class="lg:col-span-5 lg:sticky lg:top-28 space-y-4 reveal-up">
+          <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent-graphite)]">
+            04 // WORKFLOW ARCHITECTURE
+          </p>
+          <h2 class="apple-title text-3xl sm:text-5xl font-semibold">
+            Как мы работаем.
+          </h2>
+          <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+            Прозрачный цикл создания цифрового продукта в Lumeta Code Studio — от первичной постановки задачи до запуска в продакшн.
+          </p>
+          <div class="pt-2">
+            <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 font-mono text-xs text-[var(--text-primary)] hover:text-[var(--accent-graphite)] transition">
+              <span>НАЧАТЬ С БРИФА В TELEGRAM (@Lumeta_Manager)</span>
+              <span>→</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Scroll Steps -->
+        <div class="lg:col-span-7 space-y-5">
+          <div class="bento-card p-6 sm:p-8 reveal-up">
+            <div class="font-mono text-xs text-[var(--accent-graphite)] mb-2">ШАГ 01 // БРИФ</div>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-2">Погружение и архитектура задачи</h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Фиксируем цели проекта, целевую платформу (Web, Telegram Mini App, 3D или AI-система), ключевые сценарии пользователя и технический стек через прямой диалог с <span class="font-mono text-xs">@Lumeta_Manager</span> или <span class="font-mono text-xs">@mickey_tme</span>.
+            </p>
+          </div>
+
+          <div class="bento-card p-6 sm:p-8 reveal-up">
+            <div class="font-mono text-xs text-[var(--accent-graphite)] mb-2">ШАГ 02 // ДИЗАЙН</div>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-2">Визуальная система и интерактивные прототипы</h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Проектируем минималистичный интерфейс, типографику, сетку, логику переходов и 3D/моушн-акценты. Согласовываем визуальный язык до начала написания основного кода.
+            </p>
+          </div>
+
+          <div class="bento-card p-6 sm:p-8 reveal-up">
+            <div class="font-mono text-xs text-[var(--accent-graphite)] mb-2">ШАГ 03 // РАЗРАБОТКА</div>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-2">Full-Cycle инженерия и интеграции</h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Пишем чистый фронтенд и бэкенд, настраиваем WebGL-сцены, подключаем Telegram SDK или AI-модели. Оптимизируем отклик интерфейса под плавные 60/120 FPS.
+            </p>
+          </div>
+
+          <div class="bento-card p-6 sm:p-8 reveal-up">
+            <div class="font-mono text-xs text-[var(--accent-graphite)] mb-2">ШАГ 04 // ЗАПУСК</div>
+            <h3 class="text-xl sm:text-2xl font-semibold mb-2">Тестирование, релиз и развитие</h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Проводим кроссплатформенную проверку на мобильных и десктопных устройствах, разворачиваем проект на боевой инфраструктуре и сопровождаем запуск.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. «МИНИ-FAQ» В APPLE-СТИЛЕ -->
+    <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 mb-20">
+      <div class="text-center mb-12 reveal-up">
+        <p class="font-mono text-xs uppercase tracking-widest text-[var(--accent-graphite)] mb-2">
+          05 // FAQ
+        </p>
+        <h2 class="apple-title text-3xl sm:text-4xl font-semibold">
+          Частые вопросы.
+        </h2>
+      </div>
+
+      <div class="bento-card p-6 sm:p-8 divide-y divide-[var(--border-hairline)] reveal-up" id="faq-accordion">
+        
+        <div class="py-4 first:pt-0">
+          <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2">
+            <span class="text-base sm:text-lg font-medium">Как заказать разработку проекта в Lumeta Code Studio?</span>
+            <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Напишите напрямую менеджеру студии в Telegram — <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="underline text-[var(--text-primary)]">@Lumeta_Manager</a>, либо ознакомьтесь с информацией на официальном портале <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="underline text-[var(--text-primary)]">lumeta.site</a>.
+            </div>
+          </div>
+        </div>
+
+        <div class="py-4">
+          <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2">
+            <span class="text-base sm:text-lg font-medium">Что входит в профильные направления студии?</span>
+            <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Студия работает по четырём ключевым направлениям: Full-Stack веб-разработка, создание приложений Telegram Mini Apps (TMA), интерактивный 3D-моушн дизайн (Three.js / WebGL) и интеграция AI и игровых систем.
+            </div>
+          </div>
+        </div>
+
+        <div class="py-4 last:pb-0">
+          <button type="button" aria-expanded="false" class="accordion-trigger w-full flex items-center justify-between text-left py-2">
+            <span class="text-base sm:text-lg font-medium">Как связаться с MICKEY напрямую?</span>
+            <span class="accordion-icon w-7 h-7 rounded-full bg-[var(--bg-subtle)] flex items-center justify-center font-mono text-base transition-transform duration-300">+</span>
+          </button>
+          <div class="accordion-content">
+            <div class="accordion-inner pt-2 pb-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+              Для прямой связи используйте личный Telegram <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="underline text-[var(--text-primary)]">@mickey_tme</a> или добавьте в Discord по тегу <span class="font-mono text-xs text-[var(--text-primary)]">me_mickkey</span>.
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       FOOTER & SCROLL PROGRESS BAR
+       ========================================== -->
+  <footer class="border-t border-[var(--border-hairline)] bg-[var(--bg-elevated)]/40 py-12 px-4 sm:px-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono text-[var(--text-muted)]">
+      <div class="flex items-center gap-3">
+        <span class="text-[var(--text-primary)] font-semibold">MICKEY</span>
+        <span>//</span>
+        <span>Co-CEO &amp; Co-Founder @ Lumeta Code Studio</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="https://lumeta.site" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--text-primary)] transition">lumeta.site</a>
+        <a href="https://t.me/mickey_tme" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--text-primary)] transition">@mickey_tme</a>
+        <a href="https://t.me/Lumeta_Manager" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--text-primary)] transition">@Lumeta_Manager</a>
+        <span>© 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bottom Scroll Progress Indicator -->
+  <div class="fixed bottom-0 inset-x-0 h-[2px] bg-transparent z-40 pointer-events-none">
+    <div id="scroll-progress" class="h-full bg-[var(--accent-graphite)] w-0 transition-[width] duration-75"></div>
+  </div>
+
+  <!-- ==========================================
+       COMMAND PALETTE MODAL (Cmd/Ctrl + K)
+       ========================================== -->
+  <div id="cmdk-modal" role="dialog" aria-modal="true" aria-label="Командная палитра" class="fixed inset-0 z-[90] hidden items-start justify-center pt-20 sm:pt-28 px-4 bg-black/50 backdrop-blur-sm">
+    <div class="w-full max-w-lg bento-card p-3 shadow-2xl border border-[var(--border-strong)]">
+      <div class="flex items-center gap-3 px-3 py-2.5 border-b border-[var(--border-hairline)]">
+        <svg class="w-4 h-4 text-[var(--text-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 19a8 8 0 100-16 8 8 0 000 16z" />
+        </svg>
+        <input id="cmdk-input" type="text" placeholder="Перейти к секции или выполнить действие..." class="w-full bg-transparent text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none" autocomplete="off" />
+        <kbd class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-[var(--bg-subtle)] text-[var(--text-muted)]">ESC</kbd>
+      </div>
+      <ul id="cmdk-list" role="listbox" class="max-h-72 overflow-y-auto py-2 space-y-1"></ul>
+      <div class="px-3 pt-2 pb-1 border-t border-[var(--border-hairline)] flex items-center justify-between font-mono text-[10px] text-[var(--text-muted)]">
+        <span>↑↓ Навигация</span>
+        <span>↵ Выбрать</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SHORTCUTS CHEATSHEET MODAL (?)
+       ========================================== -->
+  <div id="shortcuts-modal" role="dialog" aria-modal="true" aria-label="Горячие клавиши" class="fixed inset-0 z-[90] hidden items-center justify-center px-4 bg-black/50 backdrop-blur-sm">
+    <div class="w-full max-w-md bento-card p-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-semibold">Горячие клавиши</h3>
+        <button id="close-shortcuts" type="button" class="font-mono text-xs px-2 py-1 rounded bg-[var(--bg-subtle)]">ESC</button>
+      </div>
+      <div class="space-y-2.5 font-mono text-xs">
+        <div class="flex justify-between py-1.5 border-b border-[var(--border-hairline)]"><span>Командная палитра</span><kbd class="px-2 py-0.5 rounded bg-[var(--bg-subtle)]">⌘K / Ctrl+K</kbd></div>
+        <div class="flex justify-between py-1.5 border-b border-[var(--border-hairline)]"><span>Переключить тему</span><kbd class="px-2 py-0.5 rounded bg-[var(--bg-subtle)]">T</kbd></div>
+        <div class="flex justify-between py-1.5 border-b border-[var(--border-hairline)]"><span>Вкл / Выкл звук</span><kbd class="px-2 py-0.5 rounded bg-[var(--bg-subtle)]">S</kbd></div>
+        <div class="flex justify-between py-1.5 border-b border-[var(--border-hairline)]"><span>Секции: Studio / Links / Craft</span><kbd class="px-2 py-0.5 rounded bg-[var(--bg-subtle)]">1 / 2 / 3</kbd></div>
+        <div class="flex justify-between py-1.5"><span>Эта шпаргалка</span><kbd class="px-2 py-0.5 rounded bg-[var(--bg-subtle)]">?</kbd></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       iOS-STYLE TOAST NOTIFICATION
+       ========================================== -->
+  <div id="toast" role="status" aria-live="polite" class="fixed bottom-6 left-1/2 -translate-x-1/2 translate-y-20 opacity-0 pointer-events-none z-[95] glass-pill rounded-full px-5 py-2.5 flex items-center gap-2.5 text-xs sm:text-sm font-medium transition-all duration-300">
+    <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+    <span id="toast-message">Скопировано в буфер обмена</span>
+  </div>
+
+  <!-- ==========================================
+       APPLICATION JAVASCRIPT (CLEAN MODULAR SECTIONS)
+       ========================================== -->
+  <script>
+    (() => {
+      'use strict';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
+
+      /* ==========================================
+         1. THEME MANAGEMENT (prefers-color-scheme + localStorage)
+         ========================================== */
+      const htmlEl = document.documentElement;
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const iconLight = document.getElementById('theme-icon-light');
+      const iconDark = document.getElementById('theme-icon-dark');
+
+      function applyTheme(theme) {
+        if (theme === 'light') {
+          htmlEl.classList.remove('dark');
+          iconLight.classList.remove('hidden');
+          iconDark.classList.add('hidden');
+        } else {
+          htmlEl.classList.add('dark');
+          iconDark.classList.remove('hidden');
+          iconLight.classList.add('hidden');
+        }
+        try {
+          localStorage.setItem('mickey_theme', theme);
+        } catch (e) {}
+        if (window.updateThreeTheme) window.updateThreeTheme(theme === 'dark');
+      }
+
+      let savedTheme = null;
+      try {
+        savedTheme = localStorage.getItem('mickey_theme');
+      } catch (e) {}
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      applyTheme(savedTheme ? savedTheme : (systemDark ? 'dark' : 'light'));
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isDark = htmlEl.classList.contains('dark');
+        applyTheme(isDark ? 'light' : 'dark');
+        playSound('click');
+      });
+
+      /* ==========================================
+         2. SOFT WEB AUDIO SYNTHESIZER (AFTER USER GESTURE)
+         ========================================== */
+      let audioCtx = null;
+      let soundEnabled = true;
+      let userHasInteracted = false;
+
+      const soundToggleBtn = document.getElementById('sound-toggle');
+      const soundIconOn = document.getElementById('sound-icon-on');
+      const soundIconOff = document.getElementById('sound-icon-off');
+
+      window.addEventListener('pointerdown', () => { userHasInteracted = true; }, { once: true, passive: true });
+      window.addEventListener('keydown', () => { userHasInteracted = true; }, { once: true, passive: true });
+
+      function playSound(type = 'hover') {
+        if (!soundEnabled || !userHasInteracted || prefersReducedMotion) return;
+        try {
+          if (!audioCtx) {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) return;
+            audioCtx = new AudioContextClass();
+          }
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const now = audioCtx.currentTime;
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'sine';
+          if (type === 'hover') {
+            osc.frequency.setValueAtTime(520, now);
+            osc.frequency.exponentialRampToValueAtTime(640, now + 0.035);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.015, now + 0.008);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.04);
+            osc.start(now);
+            osc.stop(now + 0.045);
+          } else if (type === 'click') {
+            osc.frequency.setValueAtTime(340, now);
+            osc.frequency.exponentialRampToValueAtTime(780, now + 0.055);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.03, now + 0.01);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.065);
+            osc.start(now);
+            osc.stop(now + 0.07);
+          } else if (type === 'konami') {
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(440, now);
+            osc.frequency.exponentialRampToValueAtTime(880, now + 0.25);
+            gain.gain.setValueAtTime(0.001, now);
+            gain.gain.linearRampToValueAtTime(0.05, now + 0.04);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.3);
+            osc.start(now);
+            osc.stop(now + 0.32);
+          }
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+        } catch (e) {}
+      }
+
+      function toggleSound() {
+        soundEnabled = !soundEnabled;
+        soundToggleBtn.setAttribute('aria-pressed', String(soundEnabled));
+        soundIconOn.classList.toggle('hidden', !soundEnabled);
+        soundIconOff.classList.toggle('hidden', soundEnabled);
+        if (soundEnabled) playSound('click');
+      }
+
+      soundToggleBtn.addEventListener('click', toggleSound);
+
+      /* ==========================================
+         3. PRELOADER (00 -> 100%) & HERO MASK REVEAL
+         ========================================== */
+      const preloader = document.getElementById('preloader');
+      const preloaderCounter = document.getElementById('preloader-counter');
+      const preloaderBar = document.getElementById('preloader-bar');
+      const skipPreloaderBtn = document.getElementById('skip-preloader');
+      let preloaderFinished = false;
+
+      function finishPreloader() {
+        if (preloaderFinished) return;
+        preloaderFinished = true;
+        preloaderCounter.textContent = '100%';
+        preloaderBar.style.width = '100%';
+        preloader.style.opacity = '0';
+        preloader.style.pointerEvents = 'none';
+        document.body.classList.add('loaded');
+        setTimeout(() => { preloader.style.display = 'none'; }, 520);
+      }
+
+      if (prefersReducedMotion) {
+        finishPreloader();
+      } else {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.floor(Math.random() * 16) + 9;
+          if (progress >= 100) {
+            clearInterval(interval);
+            finishPreloader();
+          } else {
+            preloaderCounter.textContent = String(progress).padStart(2, '0') + '%';
+            preloaderBar.style.width = progress + '%';
+          }
+        }, 45);
+      }
+
+      skipPreloaderBtn.addEventListener('click', finishPreloader);
+
+      /* ==========================================
+         4. LIVE UTC+3 (MOSCOW) CLOCK & DYNAMIC ISLAND
+         ========================================== */
+      const headerClock = document.getElementById('header-clock');
+      const islandClock = document.getElementById('island-clock');
+      const dynamicIsland = document.getElementById('dynamic-island');
+
+      function updateClocks() {
+        const now = new Date();
+        const mskTime = new Date(now.getTime() + (3 * 60 + now.getTimezoneOffset()) * 60000);
+        const hh = String(mskTime.getHours()).padStart(2, '0');
+        const mm = String(mskTime.getMinutes()).padStart(2, '0');
+        const ss = String(mskTime.getSeconds()).padStart(2, '0');
+        headerClock.textContent = `${hh}:${mm}:${ss}`;
+        islandClock.textContent = `МСК ${hh}:${mm}`;
+      }
+      updateClocks();
+      setInterval(updateClocks, 1000);
+
+      dynamicIsland.addEventListener('click', (e) => {
+        if (e.target.tagName.toLowerCase() !== 'a') {
+          dynamicIsland.classList.toggle('is-expanded');
+          playSound('click');
+        }
+      });
+
+      /* ==========================================
+         5. TOAST & CLIPBOARD WITH HAPTIC FEEDBACK
+         ========================================== */
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      let toastTimer = null;
+
+      function showToast(msg) {
+        toastMessage.textContent = msg;
+        toast.classList.remove('translate-y-20', 'opacity-0');
+        toast.classList.add('translate-y-0', 'opacity-100');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => {
+          toast.classList.add('translate-y-20', 'opacity-0');
+          toast.classList.remove('translate-y-0', 'opacity-100');
+        }, 2800);
+      }
+
+      async function copyText(text, label = text) {
+        try {
+          await navigator.clipboard.writeText(text);
+        } catch (err) {
+          const ta = document.createElement('textarea');
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+        }
+        if (navigator.vibrate) navigator.vibrate(25);
+        playSound('click');
+        showToast(`Скопировано: ${label}`);
+      }
+
+      // Discord Card Morphing Checkmark
+      const discordCard = document.getElementById('copy-discord-card');
+      const discordCopyIcon = document.getElementById('discord-copy-icon');
+      const discordCheckIcon = document.getElementById('discord-check-icon');
+      const discordCopyLabel = document.getElementById('discord-copy-label');
+
+      discordCard.addEventListener('click', () => {
+        copyText('me_mickkey', 'Discord ID (me_mickkey)');
+        discordCopyIcon.classList.add('hidden');
+        discordCheckIcon.classList.remove('hidden');
+        discordCopyLabel.textContent = 'Скопировано ✓';
+        setTimeout(() => {
+          discordCopyIcon.classList.remove('hidden');
+          discordCheckIcon.classList.add('hidden');
+          discordCopyLabel.textContent = 'Скопировать в 1 клик';
+        }, 2200);
+      });
+
+      // Terminal Line Copy Buttons
+      document.querySelectorAll('.copy-line-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const val = btn.getAttribute('data-copy');
+          copyText(val);
+          const original = btn.textContent;
+          btn.textContent = 'OK ✓';
+          setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+      });
+
+      /* ==========================================
+         6. STUDIO TABS WITH SLIDING PILL & ARROW KEYS
+         ========================================== */
+      const tabs = Array.from(document.querySelectorAll('.studio-tab'));
+      const panels = Array.from(document.querySelectorAll('.studio-panel'));
+      const tabIndicator = document.getElementById('tab-indicator');
+
+      function activateTab(index) {
+        tabs.forEach((t, i) => {
+          const active = i === index;
+          t.setAttribute('aria-selected', String(active));
+          t.classList.toggle('text-[var(--text-primary)]', active);
+          t.classList.toggle('text-[var(--text-secondary)]', !active);
+        });
+        panels.forEach((p, i) => {
+          if (i === index) {
+            p.classList.remove('hidden');
+            p.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }], {
+              duration: 280,
+              easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+            });
+          } else {
+            p.classList.add('hidden');
+          }
+        });
+        if (tabIndicator) {
+          tabIndicator.style.transform = `translateX(${index * 100}%)`;
+        }
+        playSound('click');
+      }
+
+      tabs.forEach((tab, idx) => {
+        tab.addEventListener('click', () => activateTab(idx));
+        tab.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            const next = (idx + 1) % tabs.length;
+            tabs[next].focus();
+            activateTab(next);
+          } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            const prev = (idx - 1 + tabs.length) % tabs.length;
+            tabs[prev].focus();
+            activateTab(prev);
+          }
+        });
+      });
+
+      /* ==========================================
+         7. ACCORDIONS (SINGLE OPEN PER GROUP, '+' -> '×')
+         ========================================== */
+      function initAccordion(containerId) {
+        const container = document.getElementById(containerId);
+        if (!container) return;
+        const triggers = container.querySelectorAll('.accordion-trigger');
+
+        triggers.forEach(trigger => {
+          trigger.addEventListener('click', () => {
+            const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+            triggers.forEach(other => {
+              other.setAttribute('aria-expanded', 'false');
+              other.nextElementSibling.classList.remove('is-open');
+              const icon = other.querySelector('.accordion-icon');
+              if (icon) icon.classList.remove('rotate-45');
+            });
+
+            if (!isOpen) {
+              trigger.setAttribute('aria-expanded', 'true');
+              trigger.nextElementSibling.classList.add('is-open');
+              const icon = trigger.querySelector('.accordion-icon');
+              if (icon) icon.classList.add('rotate-45');
+            }
+            playSound('click');
+          });
+        });
+      }
+      initAccordion('craft-accordion');
+      initAccordion('faq-accordion');
+
+      /* ==========================================
+         8. SPOTLIGHT, 3D CARD TILT & MAGNETIC BUTTONS
+         ========================================== */
+      if (!isTouchDevice && !prefersReducedMotion) {
+        // Spotlight tracking
+        document.querySelectorAll('.spotlight-card').forEach(card => {
+          card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+          }, { passive: true });
+        });
+
+        // 3D Tilt on Ecosystem Cards (max 6.5 deg)
+        document.querySelectorAll('.tilt-card').forEach(card => {
+          card.addEventListener('pointerenter', () => playSound('hover'));
+          card.addEventListener('pointermove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform = `perspective(900px) rotateX(${(-y * 6.5).toFixed(2)}deg) rotateY(${(x * 6.5).toFixed(2)}deg) translateY(-2px)`;
+          }, { passive: true });
+          card.addEventListener('pointerleave', () => {
+            card.style.transform = '';
+          });
+        });
+
+        // Magnetic CTA Buttons
+        document.querySelectorAll('.magnetic-btn').forEach(btn => {
+          btn.addEventListener('pointermove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.18;
+            const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.18;
+            btn.style.transform = `translate3d(${dx.toFixed(1)}px, ${dy.toFixed(1)}px, 0)`;
+          }, { passive: true });
+          btn.addEventListener('pointerleave', () => {
+            btn.style.transform = '';
+          });
+        });
+      }
+
+      /* ==========================================
+         9. INTERSECTION OBSERVERS: REVEAL, COUNT-UP, TERMINAL TYPING
+         ========================================== */
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.reveal-up').forEach(el => revealObserver.observe(el));
+
+      // Count-up Metrics
+      const countObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-target'), 10);
+          if (prefersReducedMotion) {
+            el.textContent = String(target);
+          } else {
+            let start = 0;
+            const duration = 900;
+            const startTime = performance.now();
+            const step = (now) => {
+              const p = Math.min((now - startTime) / duration, 1);
+              const eased = 1 - Math.pow(1 - p, 3);
+              el.textContent = String(Math.round(start + (target - start) * eased));
+              if (p < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+          }
+          countObserver.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+
+      document.querySelectorAll('.count-up').forEach(el => countObserver.observe(el));
+
+      // Terminal Typewriter
+      const terminalCard = document.getElementById('terminal-card');
+      const termObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          const lines = terminalCard.querySelectorAll('.term-line');
+          lines.forEach((line, idx) => {
+            const fullText = line.getAttribute('data-text') || '';
+            if (prefersReducedMotion) {
+              line.textContent = ' ' + fullText;
+              return;
+            }
+            setTimeout(() => {
+              let i = 0;
+              const timer = setInterval(() => {
+                i++;
+                line.textContent = ' ' + fullText.slice(0, i);
+                if (i >= fullText.length) clearInterval(timer);
+              }, 22);
+            }, idx * 280);
+          });
+          termObserver.unobserve(terminalCard);
+        });
+      }, { threshold: 0.35 });
+      if (terminalCard) termObserver.observe(terminalCard);
+
+      /* ==========================================
+         10. SCROLL-SPY & PROGRESS BAR
+         ========================================== */
+      const scrollProgress = document.getElementById('scroll-progress');
+      const navLinks = document.querySelectorAll('.nav-link');
+      const spySections = ['studio', 'links', 'craft'].map(id => document.getElementById(id));
+
+      window.addEventListener('scroll', () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollProgress.style.width = `${pct}%`;
+
+        let currentId = '';
+        spySections.forEach(sec => {
+          if (!sec) return;
+          const top = sec.offsetTop - 220;
+          if (scrollTop >= top) currentId = sec.id;
+        });
+
+        navLinks.forEach(link => {
+          const active = link.getAttribute('data-nav') === currentId;
+          link.classList.toggle('bg-[var(--bg-subtle)]', active);
+          link.classList.toggle('text-[var(--text-primary)]', active);
+          link.classList.toggle('text-[var(--text-secondary)]', !active);
+        });
+      }, { passive: true });
+
+      /* ==========================================
+         11. COMMAND PALETTE (Cmd/Ctrl+K) & SHORTCUTS
+         ========================================== */
+      const cmdkModal = document.getElementById('cmdk-modal');
+      const cmdkInput = document.getElementById('cmdk-input');
+      const cmdkList = document.getElementById('cmdk-list');
+      const cmdkTrigger = document.getElementById('cmdk-trigger');
+      const shortcutsModal = document.getElementById('shortcuts-modal');
+      const shortcutsTrigger = document.getElementById('shortcuts-trigger');
+      const closeShortcutsBtn = document.getElementById('close-shortcuts');
+
+      const commands = [
+        { label: 'Перейти: Lumeta Code Studio', hint: 'Секция 1', action: () => { location.hash = '#studio'; } },
+        { label: 'Перейти: Экосистема и ссылки', hint: 'Секция 2', action: () => { location.hash = '#links'; } },
+        { label: 'Перейти: Craft & Навыки', hint: 'Секция 3', action: () => { location.hash = '#craft'; } },
+        { label: 'Скопировать Discord (me_mickkey)', hint: 'Copy', action: () => copyText('me_mickkey', 'Discord ID (me_mickkey)') },
+        { label: 'Открыть личный Telegram (@mickey_tme)', hint: 't.me', action: () => window.open('https://t.me/mickey_tme', '_blank') },
+        { label: 'Написать менеджеру (@Lumeta_Manager)', hint: 't.me', action: () => window.open('https://t.me/Lumeta_Manager', '_blank') },
+        { label: 'Открыть портал lumeta.site', hint: 'Web', action: () => window.open('https://lumeta.site', '_blank') },
+        { label: 'Сменить тему (Тёмная / Светлая)', hint: 'Клавиша T', action: () => themeToggleBtn.click() },
+        { label: 'Переключить звук интерфейса', hint: 'Клавиша S', action: () => toggleSound() }
+      ];
+
+      let activeCmdIndex = 0;
+      let filteredCommands = [...commands];
+
+      function renderCommandList() {
+        cmdkList.innerHTML = '';
+        filteredCommands.forEach((cmd, idx) => {
+          const li = document.createElement('li');
+          li.setAttribute('role', 'option');
+          li.className = `flex items-center justify-between px-3 py-2.5 rounded-xl text-xs sm:text-sm cursor-pointer transition ${
+            idx === activeCmdIndex ? 'bg-[var(--accent-soft)] text-[var(--text-primary)] font-medium' : 'text-[var(--text-secondary)] hover:bg-[var(--bg-subtle)]'
+          }`;
+          li.innerHTML = `<span>${cmd.label}</span><span class="font-mono text-[11px] text-[var(--text-muted)]">${cmd.hint}</span>`;
+          li.addEventListener('click', () => {
+            closeCmdk();
+            cmd.action();
+          });
+          cmdkList.appendChild(li);
+        });
+      }
+
+      function openCmdk() {
+        cmdkModal.classList.remove('hidden');
+        cmdkModal.classList.add('flex');
+        cmdkInput.value = '';
+        filteredCommands = [...commands];
+        activeCmdIndex = 0;
+        renderCommandList();
+        setTimeout(() => cmdkInput.focus(), 20);
+        playSound('click');
+      }
+
+      function closeCmdk() {
+        cmdkModal.classList.add('hidden');
+        cmdkModal.classList.remove('flex');
+      }
+
+      cmdkTrigger.addEventListener('click', openCmdk);
+      cmdkModal.addEventListener('click', (e) => { if (e.target === cmdkModal) closeCmdk(); });
+
+      cmdkInput.addEventListener('input', () => {
+        const q = cmdkInput.value.trim().toLowerCase();
+        filteredCommands = commands.filter(c => c.label.toLowerCase().includes(q) || c.hint.toLowerCase().includes(q));
+        activeCmdIndex = 0;
+        renderCommandList();
+      });
+
+      shortcutsTrigger.addEventListener('click', () => {
+        shortcutsModal.classList.remove('hidden');
+        shortcutsModal.classList.add('flex');
+      });
+      closeShortcutsBtn.addEventListener('click', () => {
+        shortcutsModal.classList.add('hidden');
+        shortcutsModal.classList.remove('flex');
+      });
+      shortcutsModal.addEventListener('click', (e) => {
+        if (e.target === shortcutsModal) closeShortcutsBtn.click();
+      });
+
+      /* ==========================================
+         12. GLOBAL KEYBOARD SHORTCUTS & KONAMI CODE
+         ========================================== */
+      const konamiSequence = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+      let konamiIndex = 0;
+
+      window.addEventListener('keydown', (e) => {
+        // Skip Preloader on ESC
+        if (e.key === 'Escape') {
+          if (!preloaderFinished) finishPreloader();
+          closeCmdk();
+          shortcutsModal.classList.add('hidden');
+          shortcutsModal.classList.remove('flex');
+        }
+
+        // Cmd/Ctrl + K
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          if (cmdkModal.classList.contains('hidden')) openCmdk();
+          else closeCmdk();
+          return;
+        }
+
+        // Inside Command Palette navigation
+        if (!cmdkModal.classList.contains('hidden')) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (filteredCommands.length) {
+              activeCmdIndex = (activeCmdIndex + 1) % filteredCommands.length;
+              renderCommandList();
+            }
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (filteredCommands.length) {
+              activeCmdIndex = (activeCmdIndex - 1 + filteredCommands.length) % filteredCommands.length;
+              renderCommandList();
+            }
+          } else if (e.key === 'Enter' && filteredCommands[activeCmdIndex]) {
+            e.preventDefault();
+            const chosen = filteredCommands[activeCmdIndex];
+            closeCmdk();
+            chosen.action();
+          }
+          return;
+        }
+
+        // Ignore single-key shortcuts when typing in inputs
+        const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        if (tag === 'input' || tag === 'textarea') return;
+
+        if (e.key.toLowerCase() === 't') {
+          themeToggleBtn.click();
+        } else if (e.key.toLowerCase() === 's') {
+          toggleSound();
+        } else if (e.key === '1') {
+          location.hash = '#studio';
+        } else if (e.key === '2') {
+          location.hash = '#links';
+        } else if (e.key === '3') {
+          location.hash = '#craft';
+        } else if (e.key === '?') {
+          shortcutsModal.classList.toggle('hidden');
+          shortcutsModal.classList.toggle('flex');
+        }
+
+        // Konami Code check
+        if (!prefersReducedMotion) {
+          const expected = konamiSequence[konamiIndex];
+          if (e.key === expected || e.key.toLowerCase() === expected) {
+            konamiIndex++;
+            if (konamiIndex === konamiSequence.length) {
+              konamiIndex = 0;
+              document.body.classList.add('konami-negative');
+              playSound('konami');
+              showToast('You found it // NEGATIVE MODE (6s)');
+              setTimeout(() => {
+                document.body.classList.remove('konami-negative');
+              }, 6000);
+            }
+          } else {
+            konamiIndex = 0;
+          }
+        }
+      });
+
+      /* ==========================================
+         13. TAB VISIBILITY TITLE CHANGE
+         ========================================== */
+      const originalTitle = document.title;
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          document.title = 'Вернись, ещё не всё показал →';
+        } else {
+          document.title = originalTitle;
+        }
+      });
+
+      /* ==========================================
+         14. THREE.JS r128 3D MONOGRAM "M" (LAZY INIT + AUTO-PAUSE)
+         ========================================== */
+      const monogramCard = document.getElementById('monogram-card');
+      const threeContainer = document.getElementById('three-container');
+      const shaderModeLabel = document.getElementById('shader-mode-label');
+
+      function initThreeMonogram() {
+        if (!window.THREE || !threeContainer) return;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(38, threeContainer.clientWidth / threeContainer.clientHeight, 0.1, 100);
+        camera.position.set(0, 0, 6.2);
+
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+        renderer.setSize(threeContainer.clientWidth, threeContainer.clientHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        threeContainer.appendChild(renderer.domElement);
+
+        // Extruded 3D Letter "M" Geometry
+        const shape = new THREE.Shape();
+        shape.moveTo(-1.35, -1.2);
+        shape.lineTo(-1.35, 1.2);
+        shape.lineTo(-0.7, 1.2);
+        shape.lineTo(0, 0.05);
+        shape.lineTo(0.7, 1.2);
+        shape.lineTo(1.35, 1.2);
+        shape.lineTo(1.35, -1.2);
+        shape.lineTo(0.82, -1.2);
+        shape.lineTo(0.82, 0.35);
+        shape.lineTo(0.12, -0.75);
+        shape.lineTo(-0.12, -0.75);
+        shape.lineTo(-0.82, 0.35);
+        shape.lineTo(-0.82, -1.2);
+        shape.closePath();
+
+        const extrudeSettings = {
+          depth: 0.48,
+          bevelEnabled: true,
+          bevelSegments: 4,
+          steps: 1,
+          bevelSize: 0.06,
+          bevelThickness: 0.06
+        };
+
+        const geometry = new THREE.ExtrudeGeometry(shape, extrudeSettings);
+        geometry.center();
+
+        const solidMaterial = new THREE.MeshStandardMaterial({
+          color: 0xf5f5f7,
+          metalness: 0.78,
+          roughness: 0.22,
+          transparent: true,
+          opacity: 0.92
+        });
+
+        const wireMaterial = new THREE.MeshBasicMaterial({
+          color: 0x7aa2f7,
+          wireframe: true,
+          transparent: true,
+          opacity: 0.32
+        });
+
+        const solidMesh = new THREE.Mesh(geometry, solidMaterial);
+        const wireMesh = new THREE.Mesh(geometry, wireMaterial);
+        wireMesh.scale.setScalar(1.015);
+
+        const group = new THREE.Group();
+        group.add(solidMesh);
+        group.add(wireMesh);
+        scene.add(group);
+
+        // Subtle Orbital Ring
+        const ringGeo = new THREE.TorusGeometry(1.95, 0.012, 16, 100);
+        const ringMat = new THREE.MeshBasicMaterial({ color: 0x7aa2f7, transparent: true, opacity: 0.28 });
+        const ringMesh = new THREE.Mesh(ringGeo, ringMat);
+        ringMesh.rotation.x = Math.PI / 2.6;
+        group.add(ringMesh);
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+        scene.add(ambientLight);
+
+        const keyLight = new THREE.DirectionalLight(0xffffff, 1.4);
+        keyLight.position.set(4, 5, 5);
+        scene.add(keyLight);
+
+        const rimLight = new THREE.DirectionalLight(0x7aa2f7, 1.1);
+        rimLight.position.set(-4, -3, 3);
+        scene.add(rimLight);
+
+        // Shader Modes Smooth Crossfade State
+        const modes = [
+          { name: 'HYBRID CHROME', solidOpacity: 0.92, wireOpacity: 0.32, metalness: 0.78, roughness: 0.22 },
+          { name: 'PURE WIREFRAME', solidOpacity: 0.08, wireOpacity: 0.88, metalness: 0.5, roughness: 0.4 },
+          { name: 'SOLID MONOLITH', solidOpacity: 1.0, wireOpacity: 0.0, metalness: 0.35, roughness: 0.12 }
+        ];
+        let modeIdx = 0;
+        let targetSolidOp = modes[0].solidOpacity;
+        let targetWireOp = modes[0].wireOpacity;
+
+        function cycleMode() {
+          modeIdx = (modeIdx + 1) % modes.length;
+          const m = modes[modeIdx];
+          shaderModeLabel.textContent = m.name;
+          targetSolidOp = m.solidOpacity;
+          targetWireOp = m.wireOpacity;
+          solidMaterial.metalness = m.metalness;
+          solidMaterial.roughness = m.roughness;
+          playSound('click');
+        }
+
+        monogramCard.addEventListener('click', cycleMode);
+        monogramCard.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            cycleMode();
+          }
+        });
+
+        window.updateThreeTheme = (isDark) => {
+          solidMaterial.color.setHex(isDark ? 0xf5f5f7 : 0x1d1d1f);
+          wireMaterial.color.setHex(isDark ? 0x7aa2f7 : 0x5e81ac);
+        };
+        window.updateThreeTheme(htmlEl.classList.contains('dark'));
+
+        // Pointer & Gyroscope Parallax
+        let targetRotX = 0;
+        let targetRotY = 0;
+
+        if (!prefersReducedMotion) {
+          monogramCard.addEventListener('pointermove', (e) => {
+            const rect = monogramCard.getBoundingClientRect();
+            const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+            const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+            targetRotY = nx * 0.55;
+            targetRotX = ny * 0.4;
+          }, { passive: true });
+
+          monogramCard.addEventListener('pointerleave', () => {
+            targetRotX = 0;
+            targetRotY = 0;
+          });
+
+          window.addEventListener('deviceorientation', (e) => {
+            if (e.gamma !== null && e.beta !== null) {
+              targetRotY = THREE.MathUtils.clamp(e.gamma / 45, -0.5, 0.5);
+              targetRotX = THREE.MathUtils.clamp((e.beta - 45) / 45, -0.4, 0.4);
+            }
+          }, { passive: true });
+        }
+
+        // Auto-Pause when offscreen or hidden tab
+        let isVisible = true;
+        const canvasObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => { isVisible = entry.isIntersecting; });
+        }, { threshold: 0.05 });
+        canvasObserver.observe(monogramCard);
+
+        function animate() {
+          requestAnimationFrame(animate);
+          if (!isVisible || document.hidden) return;
+
+          // Smooth opacity morphing
+          solidMaterial.opacity += (targetSolidOp - solidMaterial.opacity) * 0.08;
+          wireMaterial.opacity += (targetWireOp - wireMaterial.opacity) * 0.08;
+
+          const scrollOffset = window.scrollY * 0.0012;
+          const autoSpin = prefersReducedMotion ? 0 : performance.now() * 0.00045;
+
+          group.rotation.y += ((targetRotY + autoSpin + scrollOffset) - group.rotation.y) * 0.06;
+          group.rotation.x += (targetRotX - group.rotation.x) * 0.06;
+          ringMesh.rotation.z += prefersReducedMotion ? 0 : 0.003;
+
+          renderer.render(scene, camera);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+          if (!threeContainer) return;
+          camera.aspect = threeContainer.clientWidth / threeContainer.clientHeight;
+          camera.updateProjectionManager();
+          renderer.setSize(threeContainer.clientWidth, threeContainer.clientHeight);
+        }, { passive: true });
+      }
+
+      // Lazy start 3D after DOM & Three.js load
+      window.addEventListener('load', initThreeMonogram);
+
+    })();
+  </script>
+</body>
+</html>
